@@ -1,0 +1,24 @@
+{
+  "name": "dog-dog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shmily40686/Dog-dog-App.git"
+  },
+  "author": "shmily40686",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/shmily40686/Dog-dog-App/issues"
+  },
+  "homepage": "https://github.com/shmily40686/Dog-dog-App#readme",
+  "dependencies": {
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-router": "^4.3.1"
+  }
+}
