@@ -1,20 +1,27 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-class Home extends React.Component {
-	goToStore = () => {
-		this.props.history.push('/store')
-	}	
+const styleObj = {
+	textDecoration: 'none',
+	color: 'black'
+}
 
+class Home extends React.Component {
 	render() {
 		return(
 			<div>
-				<Link to='/sale'>
+				<Link to='/chosePage' style={styleObj}>
 					<div>Dogs part go here </div>
 				</Link>
-				<div onCLick={this.goToStore}>Store part go here </div>
-				<div>Platform part go here </div>
-				<div>Video part go here </div>
+				<Link to='/' style={styleObj}>
+					<div>Store part go here </div>
+				</Link>
+				<Link to='/' style={styleObj}>
+					<div>Platform part go here </div>
+				</Link>
+				<Link to='/' style={styleObj}>
+					<div>Video part go here </div>
+				</Link>
 			</div>
 		)
 	}
