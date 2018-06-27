@@ -1,16 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import Sale from './Sale.jsx'
-import ForSale from './ForSale.jsx'
+import Sale from './Sale/Sale.jsx'
+import ForSale from './ForSale/ForSale.jsx'
+
+const styleObj = {
+	textDecoration: 'none',
+	width: "200px"
+}
 
 class ChosePage extends React.Component {
 
 	render() {
 		return(
 			<div>
-				<Link to='/sale'>SALE</Link>
-				<Link to='/forSale'>LOOKING FOR DOG</Link>
+				<Link style={styleObj} to='/forSale'>SALE</Link><br/>
+				<Link style={styleObj} to='/sale'>LOOKING FOR DOG</Link>
 			</div>
 		)
 	}
