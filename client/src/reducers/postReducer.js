@@ -7,8 +7,7 @@ function postReducer ( state=[], action ) {
 		case ADD_MANY_POSTS:
 			return state.concat(action.posts)
 		case CHANGE_POSTS:
-			state = [];
-			return state.concat(action.posts)
+			return action.posts
 		case REMOVE_POST:
 			return  state.filter(post => post._id !== action.post._id)
 		default:

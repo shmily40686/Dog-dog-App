@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { changeLocation } from '../../action/changeLocation.js'
+import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = (state, props) => {
 
 	return {
 		location: state.location,
-		logInBox: state.logInBox,
+		login: state.login,
 		user: state.user
 	}
 }
@@ -31,6 +32,7 @@ class LogoInfoBox extends React.Component {
 
 	this.changeLocation = this.changeLocation.bind(this);
 	this.clickSwith = this.clickSwith.bind(this);
+	this.switchToUserPage = this.switchToUserPage.bind(this);
 	}
 
 	changeLocation (e) {
@@ -44,11 +46,19 @@ class LogoInfoBox extends React.Component {
 		})
 	}
 
+	switchToUserPage () {
+		if (this.props.user) {
+			this.props.history.push('/user')
+		} else {
+			this.props.history.push('/login')
+		}
+	}
+
 	render() {
 		return(
-			<div style={{display: this.state.logInBox ? 'block' : 'none'}}>
-				<div className="LogoInfoBox" style={{display: this.props.logIn ? 'block' : 'none'}}>
-					<h3>`Hi ${this.props.user}`</h3>
+			<div>
+				<div className="LogoInfoBox" style={{display: this.state.logIn ? 'block' : 'none'}}>
+					<h3 onClick={this.switchToUserPage}>{`Hi ${this.props.user ? this.props.user : "buddy"}`}</h3>
 					<p onClick={this.clickSwith}>{this.props.location}</p>
 				</div>
 				<div className="changeLocationBox" style={{display: this.state.locationBox ? 'block' : 'none'}}>
@@ -60,4 +70,4 @@ class LogoInfoBox extends React.Component {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (LogoInfoBox)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps) (LogoInfoBox))

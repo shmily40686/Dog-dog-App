@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 
 import { changeCurrentUser } from '../../action/changeCurrentUser.js'
+import { changeLogInBox } from '../../action/changeLocation.js'
 
 const mapStateToProps = (state, props) => {
 
@@ -17,6 +18,9 @@ const mapDispatchToProps = (dispatch, props) => {
 	return {
 		changeUserToStore : function (user) {
 			dispatch(changeCurrentUser(user))
+		},
+		changeLogInToStore: function (boolean) {
+			dispatch(changeLogInBox(boolean))
 		}
 	}
 }
@@ -35,6 +39,7 @@ class logIn extends React.Component {
 	this.submitSignUp = this.submitSignUp.bind(this);
 	this.getUsername = this.getUsername.bind(this);
 	this.getPassword = this.getPassword.bind(this);
+	this.getRepeatPassword = this.getRepeatPassword.bind(this);
 	this.signupOrlogin = this.signupOrlogin.bind(this);
 	this.changeToLogIn = this.changeToLogIn.bind(this);
 	this.changeToSignUp = this.changeToSignUp.bind(this);
@@ -86,6 +91,9 @@ class logIn extends React.Component {
 		  .then(function (response) {
 		    console.log("login! ", response);
 		    app.props.changeUserToStore(response.data)
+		    app.props.changeLogInToStore(true)
+		    app.props.history.push('/home')
+
 		  })
 		  .catch(function (error) {
 		    console.log(error);
@@ -106,6 +114,7 @@ class logIn extends React.Component {
 	  	})
 		  .then(function (response) {
 		    console.log("signup! ", response);
+		    app.props.history.push('/login')
 
 		  })
 		  .catch(function (error) {
@@ -113,6 +122,8 @@ class logIn extends React.Component {
 		  });
 		} else {
 			console.log("not same password")
+			console.log(this.state.password)
+			console.log(this.state.repeatPassword)
 		}
   		
 	}
@@ -136,7 +147,7 @@ class logIn extends React.Component {
 						    <input className="login" type="password" placeholder="Enter Password" name="psw"  onChange={this.getPassword}/>
 						      
 						    <label htmlFor="psw"><b>Repeat Password</b></label>
-						    <input className="login" type="password" placeholder="Repeat Password " name="psw"  onChange={this.getRepeatPasswords}/> 
+						    <input className="login" type="password" placeholder="Repeat Password " name="psw"  onChange={this.getRepeatPassword}/> 
 						    
 						    <button className="loginButton"type="submit">Sign Up</button>
 						  </div>
@@ -176,7 +187,7 @@ class logIn extends React.Component {
 	render() {
 		return(
 			<div>
-				<div>
+				<div > 
 					<div onClick={this.changeToLogIn}>Login</div>
 					<div onClick={this.changeToSignUp}>Sign Up</div>
 				</div>

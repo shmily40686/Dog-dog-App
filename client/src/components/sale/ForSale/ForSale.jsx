@@ -1,8 +1,23 @@
 import React from 'react'
 import UploardPicture from './UploardPicture.jsx'
 import axios from 'axios'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import logIn from '../../logIn/logIn.jsx'
+import { Redirect } from 'react-router-dom'
 
+const mapStateToProps = (state, props) => {
 
+	return {
+		login: state.login,
+		user: state.user
+	}
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+	return {
+	}
+}
 class ForSale extends React.Component {
 	constructor(props) {
 	  super(props);
@@ -55,6 +70,10 @@ class ForSale extends React.Component {
 
   	onSubmit (e) {
   		e.preventDefault()
+  		console.log (this.props.login)
+  		if (this.props.login === false) {
+  			this.props.history.push('/login')
+  		} else if (this.props.login) {
   		var app = this;
   		axios({
 	  		method: 'post',
@@ -93,12 +112,28 @@ class ForSale extends React.Component {
 	  		}
 	  	})
 		  .then(function (response) {
-		    console.log("post new post! ", response);
+		    console.log("post new post! ", response.data._id);
+			    axios({
+			    	method:'post',
+			    	url: "http://localhost:3000/api/addPostToUser",
+			    	data: {
+			    		id: response.data._id,
+			    		user: app.props.user
+			    	}
+			    })
+			    .then(function(response) {
+			    	console.log("add post to user",response)
+			    	app.props.history.push('/sale')
+			    })
+			    .catch(function (error) {
+			    	console.log(error);
+			  });
 
 		  })
 		  .catch(function (error) {
 		    console.log(error);
 		  });
+		}
   	}
 
 
@@ -302,4 +337,4 @@ class ForSale extends React.Component {
 	}
 }
 
-export default ForSale
+export default connect(mapStateToProps, mapDispatchToProps) (ForSale) 
