@@ -27,10 +27,22 @@ app.post('/api/submitPost', function(req,res) {
 			console.log('err: ', err)
 			res.status(404).send(err)
 		} else {
-			res.status(200).send(req.body)
+			res.status(200).send(post)
 		}
 	})
 	console.log("got post ", req.body)
+})
+
+app.post('/api/addPostToUser', function(req, res) {
+	var user = req.body.user;
+	var id = req.body.id;
+	dbModels.User.update({userName: user}, { $push: { listForSale : id} }, function(err,data) {
+		if(err) {
+			res.status(404).send(err)
+		} else {
+			res.status(200).send(data)
+		}
+	} )
 })
 
 app.post('/UploardImg', function(req,res) {
@@ -70,6 +82,24 @@ app.post('/api/viewUp/:postId', function(req,res) {
 	})
 })
 
+app.post('/api/deletePosts', function(req,res) {
+	var user = req.body.user;
+	var id = req.body.id;
+	dbModels.User.update({userName: user}, { $pull: {listForSale : id}} ,function(err) {
+		if(err) {
+			res.status(404).send(err)
+		}
+	} )
+
+	dbModels.DogPost.remove({_id: id}, function(err,data) {
+		if (err) {
+			res.status(404).send(err)
+		} else {
+			res.status(200).send(data)
+		}
+	})
+})
+
 app.get('/api/posts', function (req, res) {
 	dbModels.DogPost.find({}, function (err, data) {
 		// console.log('data: ', data)
@@ -85,6 +115,8 @@ app.get('/api/users', function (req, res) {
 		res.status(200).send(JSON.stringify(data))
 	})
 })
+
+
 
 app.post('/api/login', function (req, res) {
 	console.log("got the login data", req.body)
@@ -125,24 +157,9 @@ app.post('/api/signup', function (req, res) {
 			res.status(200).send('ok')
 		}
 	})
-	// dbModels.User.findOne({userName: req.body.username}, function (err, data) {
-	// 	if (err) {
-	// 		res.status(404).send(err)
-	// 	} else {
-	// 		console.log(data)
-	// 		var password = data.userPassword
-	// 		var salt = bcrypt.genSaltSync(10);
-	// 		var hash = bcrypt.hashSync(password, salt);
-	// 		var match = bcrypt.compareSync(req.body.password, hash);
-	// 		console.log("hash",hash)
-	// 		if (match) {
-	// 			res.status(200).send("pass!!!!!")
-	// 		} else {
-	// 			res.status(404).send('fail')
-	// 		}
-	// 	}
-	// })
 })
+
+
 
 app.use(fallback('index.html', { root }))
 

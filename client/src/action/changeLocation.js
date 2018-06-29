@@ -12,7 +12,7 @@ export const changeLocation = function (location) {
 export const changeLogInBox = function (boolean) {
 	return {
 		type: CHANGE_LOGINBOX,
-		logInBox: false
+		logInBox: boolean
 
 	}
 }

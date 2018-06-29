@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Route, Switch} from 'react-router-dom'
 
 import Nav from './Nav.jsx'
-import LogoInfoBox from './LogIn/LogoInfoBox.jsx'
+import LogoInfoBox from './logIn/LogoInfoBox.jsx'
 import Welcome from './home/Welcome.jsx'
 import Home from './home/Home.jsx'
 import Sale from './sale/Sale/Sale.jsx'
