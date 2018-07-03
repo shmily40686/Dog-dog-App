@@ -1,28 +1,31 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { withRouter } from 'react-router-dom'
 import UploardPicture from '../sale/ForSale/UploardPicture.jsx'
 
 class EditPost extends React.Component {
 	constructor(props) {
 	  super(props);
 	  this.state = {
-	  		imageUrls: this.props.post.imageUrls,
-	    	title: this.props.post.title,
-	    	type: this.props.post.type,
-	    	size: this.props.post.size,
-	    	sex: this.props.post.sex,
-	    	year: this.props.post.year,
-	    	month: this.props.post.month,
-	    	color: this.props.post.color,
-	    	fullPrice: this.props.post.fullPrice,
-	    	deposit: this.props.post.deposit,
-	    	email: this.props.post.email,
-	    	call: this.props.post.call,
-	    	street: this.props.post.street,
-	    	city: this.props.post.city,
-	    	state: this.props.post.state,
-	    	zipcode: this.props.post.zipcode,
-	    	description: this.props.post.description
+	  		id: this.props.post._id || "",
+	  		imageUrls: this.props.post.imageUrls || "",
+	    	title: this.props.post.title || "",
+	    	type: this.props.post.type || "",
+	    	size: this.props.post.size || "",
+	    	sex: this.props.post.sex || "",
+	    	year: this.props.post.year || "",
+	    	month: this.props.post.month || "",
+	    	color: this.props.post.color || "",
+	    	fullPrice: this.props.post.fullPrice || "",
+	    	deposit: this.props.post.deposit || "",
+	    	email: this.props.post.email || "",
+	    	call: this.props.post.call || "",
+	    	street: this.props.post.street || "",
+	    	city: this.props.post.city || "",
+	    	state: this.props.post.state || "",
+	    	zipcode: this.props.post.zipcode || "",
+	    	description: this.props.post.description || ""
 	  }
 	this.getTitle = this.getTitle.bind(this);
 	this.getType = this. getType.bind(this);
@@ -46,16 +49,14 @@ class EditPost extends React.Component {
 	}
 		onSubmit (e) {
   		e.preventDefault()
-  		console.log (this.props.login)
-  		if (this.props.login === false) {
-  			this.props.history.push('/login')
-  		} else if (this.props.login) {
+
   		var app = this;
   		axios({
 	  		method: 'post',
 	  		url: "http://localhost:3000/api/editPost",
 	  		data: {
-	  				title: app.state.title,
+	  			id: app.state.id,
+	  			title: app.state.title,
 					creatAt: new Date(),
 					info: {
 						type: app.state.type,
@@ -88,17 +89,19 @@ class EditPost extends React.Component {
 	  		}
 	  	})
 		  .then(function (response) {
-		    console.log("edited post! ", response.data._id)
+		    console.log("edited post! ", response)
+		    // app.props.history.push('/sale')
 
 		  })
 		  .catch(function (error) {
 		    console.log(error);
 		  });
-		}
   	}
 
   	getUrl (data) {
+  		console.log("this.state.imageUrls",this.state.imageUrls)
   		this.setState({
+
   			imageUrls: this.state.imageUrls.concat(data)
   		})
   	}
@@ -267,31 +270,31 @@ class EditPost extends React.Component {
 					</div><br/>
 					<li>
 					<label htmlFor="color">Color</label>
-   					<input type="text" name="color" maxLength="100" placeholder="Black" onChange={this.getColor} value={`${this.state.color}`}/>
+   					<input type="text" name="color" maxLength="100"  onChange={this.getColor} value={`${this.state.color}`}/>
     				<span>Enter your your dog's color here</span>
     			</li>
     			<li>
 					<label htmlFor="fullPrice">Price</label>
 					FullPrice:
-   					<input type="text" name="fullPrice" maxLength="100" placeholder="1500" onChange={this.getFullPrice} value={`${this.state.fullPrice}`}/>
+   					<input type="text" name="fullPrice" maxLength="100" onChange={this.getFullPrice} value={`${this.state.fullPrice}`}/>
    				Deposit:
-   					<input type="text" name="deposit" maxLength="100" placeholder="500" onChange={this.getDeposit} value={`${this.state.deposit}`}/>
+   					<input type="text" name="deposit" maxLength="100"  onChange={this.getDeposit} value={`${this.state.deposit}`}/>
     				<span>Enter your your dog's price here</span>
     			</li>
     			<li>
 					<label htmlFor="Connect">Connect</label>
 					email:
-   					<input type="text" name="email" maxLength="100" placeholder="xxxx@gmail.com" onChange={this.getEmail} value={`${this.state.email}`}/>
+   					<input type="text" name="email" maxLength="100" onChange={this.getEmail} value={`${this.state.email}`}/>
    				call:
-   					<input type="text" name="call" maxLength="100" placeholder="415-XXX-XXXX" onChange={this.getCall} value={`${this.state.call}`}/>
+   					<input type="text" name="call" maxLength="100"  onChange={this.getCall} value={`${this.state.call}`}/>
     				<span>Enter your your connect here</span>
     			</li>
     			<li>
 					<label htmlFor="Address">Address</label>
-				<input type="text" name="street" maxLength="100" placeholder="16243 Miramar Pl" onChange={this.getStreet} value={`${this.state.street}`}/>street:
-   				<input type="text" name="city" maxLength="100" placeholder="San Leandro" onChange={this.getCity} value={`${this.state.city}`}/>city:
-   				<input type="text" name="state" maxLength="100" placeholder="CA" onChange={this.getState} value={`${this.state.state}`}/>state:
-   				<input type="text" name="zipcode" maxLength="100" placeholder="94578" onChange={this.getZipcode} value={`${this.state.zipcode}`}/>zipcode:
+				<input type="text" name="street" maxLength="100"  onChange={this.getStreet} value={`${this.state.street}`}/>street:
+   				<input type="text" name="city" maxLength="100" onChange={this.getCity} value={`${this.state.city}`}/>city:
+   				<input type="text" name="state" maxLength="100" onChange={this.getState} value={`${this.state.state}`}/>state:
+   				<input type="text" name="zipcode" maxLength="100" onChange={this.getZipcode} value={`${this.state.zipcode}`}/>zipcode:
     				<span>Enter your your address here</span>
     			</li>						
 					</ul>
@@ -305,4 +308,6 @@ class EditPost extends React.Component {
 	}
 }
 
-export default EditPost
+export default withRouter(EditPost) 
+
+
