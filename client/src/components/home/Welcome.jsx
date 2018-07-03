@@ -9,7 +9,7 @@ import Home from './Home.jsx'
 const mapStateToProps = (state, props) => {
 
 	return {
-		location: state.location	
+		location: state.location
 	}
 }
 
@@ -35,13 +35,16 @@ class Welcome extends React.Component {
 
 	render() {
 		return(
-			<div>
-				<Link to='/login'>Sign In</Link>
-				<h1>Logo</h1>
-				<h2>where are you looking for ?</h2>
+			<div className='full-width'>
+				<Link to='/login'>
+					<button className="sign-in-button">
+						Sign In
+					</button>
+				</Link>
+				<h2>What area do you want to look?</h2>
 				<input type="text" onChange={this.locationHandler}/>
 				<Link to='/home'>GO</Link>
-				
+
 			</div>
 		)
 	}

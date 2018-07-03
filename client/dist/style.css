@@ -1,22 +1,48 @@
+#app {
+    margin: -8px;
+    font-family: PingFang SC, Open Sans, Helvetica Neue, Helvetica, Arial, "sans-serif";
+}
+
+.full-width {
+    width: 100%;
+}
+
+.sign-in-button {
+    background-color: #8fcee5;
+    color: #fff;
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 2.5px;
+    text-transform: uppercase;
+}
+
+.sign-in-button:hover {
+    background-color: #8dbdd4;
+    cursor: pointer;
+}
+
 .nav{
-	display: flex;
-	margin: auto;
-    background-color: #e9eaec
-    width: 1200px;
-    height: 40px
+    display: flex;
+    margin: auto;
+    background-color: #e9eaec;
+    height: 40px;
+    overflow: hidden;
+    text-transform: uppercase;
 }
 
 .title{
-	width: 150px;
+	width: 20%;
     text-align: center;
     background-color: #c5c9ce;
-    font-size: 35px;
+    font-size: 30px;
     text-decoration: none;
-    color: black;
+    color: rgba(18, 18, 18, .8);
 }
 
 .title:hover {
-    background-color: #8fcee5;
+    border-bottom: 5px solid #8fcee5;
+
 }
 
 .SeachBar-Sort {
@@ -74,9 +100,9 @@
 }
 
 .post {
-    background-color: #e3e9ee; 
+    background-color: #e3e9ee;
     border: 1px solid #ddd;
-    border-radius: 5px; 
+    border-radius: 5px;
     width: 600px;
 }
 
@@ -135,7 +161,7 @@
 .form-style-7 ul{
     list-style:none;
     padding:0;
-    margin:0;   
+    margin:0;
 }
 .form-style-7 li{
     display: block;
@@ -171,7 +197,7 @@
 .form-style-7 input[type="url"],
 .form-style-7 input[type="password"],
 .form-style-7 textarea,
-.form-style-7 select 
+.form-style-7 select
 {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -196,7 +222,7 @@
 .form-style-7 input[type="url"]:focus,
 .form-style-7 input[type="password"]:focus,
 .form-style-7 textarea:focus,
-.form-style-7 select:focus 
+.form-style-7 select:focus
 {
 }
 .form-style-7 li > span{
@@ -344,16 +370,18 @@ span.psw {
 
 .loginButton {
     background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
+    color: #fff;
+    width: 50%;
+    margin: auto;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 2.5px;
+    text-transform: uppercase;
 }
 
 .loginButton:hover {
-    opacity: 0.8;
+    background-color: #3c9f40;
+    cursor: pointer;
 }
 .cancelbtn:hover {
     opacity: 0.8;
@@ -369,7 +397,6 @@ span.psw {
 
 .logIn {
     background-color: #e8e8e8;
-    border-radius: 5%
 }
 
 

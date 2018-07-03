@@ -27,7 +27,7 @@ class LogoInfoBox extends React.Component {
 		this.state = {
 			logIn : true,
 			locationBox: false,
-			
+
 		}
 
 	this.changeLocation = this.changeLocation.bind(this);
