@@ -40,13 +40,23 @@ class UserPage extends React.Component {
 	  this.state = {
 	  	currentPost: null,
 	  	id: null,
-	  	editPost: false
+	  	editPost: false,
+	  	currentPage: 1,
+	    postsPerPage:5
 	  }
 
 	 this.renderUserPost = this.renderUserPost.bind(this);
 	 this.deletePost = this.deletePost.bind(this);
 	 this.editPost = this.editPost.bind(this);
+	 this.showComponent = this.showComponent.bind(this);
+	 this.handleClickPage = this.handleClickPage.bind(this);
 	}
+
+	handleClickPage (e) {
+  	this.setState({
+  		currentPage: Number(e.target.id)
+  	})
+  }
 
 	editPost (post) {
  	 	this.setState({
@@ -114,6 +124,50 @@ class UserPage extends React.Component {
 	}
 
 
+	showComponent (postList) {
+			const indexOfLastPost = this.state.currentPage * this.state.postsPerPage;
+			const indexOfFirstPost = indexOfLastPost - this.state.postsPerPage;
+			const currentPosts = postList.slice(indexOfFirstPost, indexOfLastPost)
+			const pageNumbers= [];
+			for (let i = 1; i <= Math.ceil(postList.length / this.state.postsPerPage); i++) {
+				pageNumbers.push(i)
+			}
+			return (
+				<div>
+				<div>
+					{currentPosts.map((post,i) => {
+			 			return(
+			 				<div className='post' key={i}>
+			 						<h3 >{post.title}</h3>
+									<img src={post.photo[0]} style={{width:'150px'}}/>
+									<div style={{width:'100px'}}>{post.type}</div>
+									<div >{post.info.age.year} year<span>{post.info.age.month} month</span></div>
+									<div >{post.location.city}<span>{post.location.state}</span></div>
+									<div >{post.info.price.fullPrice}</div>
+									<div >{post.info.sex}</div>
+									<div >{post.info.type}</div>
+									<div >{post.info.size}</div>
+									<div >{post.view}</div>
+									<button onClick={() => this.deletePost(post)}>Delete</button>
+									<button onClick={() => this.editPost(post)}>Edit</button>
+			 				</div>
+			 			)
+			 		})}
+				</div>
+				<ul className="page-numbers" >{
+					pageNumbers.map(number => {
+			          return (
+			            <li className="page-per-numbers" key={number} id={number} onClick={this.handleClickPage}>
+			              {number}
+			            </li>
+			          )
+			        })
+				}</ul>
+				</div>
+			)
+	}
+
+
 	renderUserPost () {
 		if (this.props.login == false) {
 			return (
@@ -138,26 +192,11 @@ class UserPage extends React.Component {
 						}
 					}
 				}
+				
+
 			 return (
 			 	<div>
-			 		{postList.map((post,i) => {
-			 			return(
-			 				<div className='post' key={i}>
-			 						<h3 >{post.title}</h3>
-									<img src={post.photo[0]} style={{width:'150px'}}/>
-									<div style={{width:'100px'}}>{post.type}</div>
-									<div >{post.info.age.year} year<span>{post.info.age.month} month</span></div>
-									<div >{post.location.city}<span>{post.location.state}</span></div>
-									<div >{post.info.price.fullPrice}</div>
-									<div >{post.info.sex}</div>
-									<div >{post.info.type}</div>
-									<div >{post.info.size}</div>
-									<div >{post.view}</div>
-									<button onClick={() => this.deletePost(post)}>Delete</button>
-									<button onClick={() => this.editPost(post)}>Edit</button>
-			 				</div>
-			 			)
-			 		})}
+			 		{this.showComponent(postList)}
 			 	</div>
 			 )
 			}
@@ -165,6 +204,7 @@ class UserPage extends React.Component {
 	}
 
 	render() {
+
 		return(
 			<div className="UserPage">
 				<div>{this.renderUserPost()}</div>

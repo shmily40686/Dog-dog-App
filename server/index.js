@@ -82,6 +82,35 @@ app.post('/api/viewUp/:postId', function(req,res) {
 	})
 })
 
+app.post('/api/editPost', function(req,res) {
+	console.log("editPost",req.body)
+	dbModels.DogPost.update({_id: req.body.id}, { $set: {
+			photo: req.body.photo,
+	    	title: req.body.title,
+	    	type: req.body.type,
+	    	size: req.body.size,
+	    	sex: req.body.sex,
+	    	year: req.body.year,
+	    	month: req.body.month,
+	    	color: req.body.color,
+	    	fullPrice: req.body.fullPrice,
+	    	deposit: req.body.deposit,
+	    	email: req.body.email,
+	    	call: req.body.call,
+	    	street: req.body.street,
+	    	city: req.body.city,
+	    	state: req.body.state,
+	    	zipcode: req.body.zipcode,
+	    	description: req.body.description
+	}},function(err,data) {
+		if (err) {
+			res.status(404).send(err)
+		} else {
+			res.status(200).send(data)
+		}
+	})
+})
+
 app.post('/api/deletePosts', function(req,res) {
 	var user = req.body.user;
 	var id = req.body.id;
