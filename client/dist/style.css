@@ -18,6 +18,23 @@
     margin: auto;
 }
 
+.sale-selection {
+    width: 50%;
+    line-height: 50px;
+    text-align: center;
+    box-shadow: 5px 5px 5px rgba(200, 200, 200, .4);
+    margin: 15px;
+    border-radius: 2.5px;
+    background-color: rgba(200, 200, 200, 0.1);
+    text-decoration: none;
+    color: black;
+}
+
+.sale-selection:hover {
+    background-color: rgba(200, 200, 200, 0.25);
+    box-shadow: 5px 5px 5px #8fcee5;
+}
+
 .welcome-msg {
     margin: 15px;
 }
@@ -49,8 +66,13 @@
     padding-left: 15px;
 }
 
+.no-posts-message {
+    margin-left: 15px;
+}
+
 .no-decoration {
     text-decoration: none;
+    color: black;
 }
 
 .nav-link-tile:hover {

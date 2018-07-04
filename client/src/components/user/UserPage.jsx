@@ -90,7 +90,7 @@ class UserPage extends React.Component {
 		    console.log(error);
 		  });
 		})
-		
+
 	}
 
 	componentDidMount () {
@@ -120,7 +120,7 @@ class UserPage extends React.Component {
 				console.error('error getting data: ', err)
 			});
 		}
-		
+
 	}
 
 
@@ -134,35 +134,43 @@ class UserPage extends React.Component {
 			}
 			return (
 				<div>
-				<div>
-					{currentPosts.map((post,i) => {
-			 			return(
-			 				<div className='post' key={i}>
-			 						<h3 >{post.title}</h3>
-									<img src={post.photo[0]} style={{width:'150px'}}/>
-									<div style={{width:'100px'}}>{post.type}</div>
-									<div >{post.info.age.year} year<span>{post.info.age.month} month</span></div>
-									<div >{post.location.city}<span>{post.location.state}</span></div>
-									<div >{post.info.price.fullPrice}</div>
-									<div >{post.info.sex}</div>
-									<div >{post.info.type}</div>
-									<div >{post.info.size}</div>
-									<div >{post.view}</div>
-									<button onClick={() => this.deletePost(post)}>Delete</button>
-									<button onClick={() => this.editPost(post)}>Edit</button>
-			 				</div>
-			 			)
-			 		})}
-				</div>
-				<ul className="page-numbers" >{
-					pageNumbers.map(number => {
-			          return (
-			            <li className="page-per-numbers" key={number} id={number} onClick={this.handleClickPage}>
-			              {number}
-			            </li>
-			          )
-			        })
-				}</ul>
+					{currentPosts.length > 0 ? (
+						<div>
+							<div>
+								{currentPosts.map((post,i) => {
+						 			return(
+						 				<div className='post' key={i}>
+						 						<h3 >{post.title}</h3>
+												<img src={post.photo[0]} style={{width:'150px'}}/>
+												<div style={{width:'100px'}}>{post.type}</div>
+												<div >{post.info.age.year} year<span>{post.info.age.month} month</span></div>
+												<div >{post.location.city}<span>{post.location.state}</span></div>
+												<div >{post.info.price.fullPrice}</div>
+												<div >{post.info.sex}</div>
+												<div >{post.info.type}</div>
+												<div >{post.info.size}</div>
+												<div >{post.view}</div>
+												<button onClick={() => this.deletePost(post)}>Delete</button>
+												<button onClick={() => this.editPost(post)}>Edit</button>
+						 				</div>
+						 			)
+						 		})}
+							</div>
+							<ul className="page-numbers" >{
+								pageNumbers.map(number => {
+						          return (
+						            <li className="page-per-numbers" key={number} id={number} onClick={this.handleClickPage}>
+						              {number}
+						            </li>
+						          )
+						        })
+							}</ul>
+						</div>
+					) : (
+						<div className='no-posts-message'>
+							<h3>Oh no! You don't have any posts yet!</h3>
+						</div>
+					)}
 				</div>
 			)
 	}
@@ -171,7 +179,7 @@ class UserPage extends React.Component {
 	renderUserPost () {
 		if (this.props.login == false) {
 			return (
-				<h1>Lorading</h1>
+				<h1>Loading</h1>
 			)
 		} else if (this.state.editPost) {
 				return(
@@ -192,7 +200,7 @@ class UserPage extends React.Component {
 						}
 					}
 				}
-				
+
 
 			 return (
 			 	<div>

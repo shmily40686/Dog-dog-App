@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { changeLocation } from '../../action/changeLocation.js'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 const mapStateToProps = (state, props) => {
 
@@ -69,7 +69,9 @@ class LogoInfoBox extends React.Component {
 							</div>
 						</div>
 					) : (
-						<h3 className='centered welcome-msg'>Sign in to see the dogs!</h3>
+						<Link className='no-decoration' to='/login'>
+							<h3 className='centered welcome-msg'>Sign in to see the dogs!</h3>
+						</Link>
 					)}
 				</div>
 			</div>
