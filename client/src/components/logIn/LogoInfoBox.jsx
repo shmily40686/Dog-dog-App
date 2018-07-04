@@ -58,12 +58,19 @@ class LogoInfoBox extends React.Component {
 		return(
 			<div>
 				<div className="LogoInfoBox" style={{display: this.state.logIn ? 'block' : 'none'}}>
-					<h3 onClick={this.switchToUserPage}>{`Hi ${this.props.user ? this.props.user : "buddy"}`}</h3>
-					<p onClick={this.clickSwith}>{this.props.location}</p>
-				</div>
-				<div className="changeLocationBox" style={{display: this.state.locationBox ? 'block' : 'none'}}>
-					<input type="text" onChange={this.changeLocation}/>
-					<button onClick={this.clickSwith}>change location</button>
+					{this.props.user ? (
+						<div>
+							<h3 onClick={this.switchToUserPage}>
+							Hi {this.props.user}
+							</h3>
+							<div className="changeLocationBox" style={{display: this.state.locationBox ? 'block' : 'none'}}>
+								<input type="text" onChange={this.changeLocation}/>
+								<button onClick={this.clickSwith}>change location</button>
+							</div>
+						</div>
+					) : (
+						<h3 className='centered welcome-msg'>Sign in to see the dogs!</h3>
+					)}
 				</div>
 			</div>
 		)

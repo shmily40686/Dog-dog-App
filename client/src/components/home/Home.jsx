@@ -3,24 +3,25 @@ import { Link } from 'react-router-dom'
 
 const styleObj = {
 	textDecoration: 'none',
-	color: 'black'
+	color: 'black',
+	margin: '15px'
 }
 
 class Home extends React.Component {
 	render() {
 		return(
-			<div>
-				<Link to='/chosePage' style={styleObj}>
-					<div>Dogs part go here </div>
+			<div className='nav-link-tile-container'>
+				<Link className='no-decoration' to='/chosePage'>
+					<div className='nav-link-tile'>View dogs!</div>
 				</Link>
-				<Link to='/' style={styleObj}>
-					<div>Store part go here </div>
+				<Link className='no-decoration' to='/'>
+					<div className='nav-link-tile'>View accessories!</div>
 				</Link>
-				<Link to='/' style={styleObj}>
-					<div>Platform part go here </div>
+				<Link className='no-decoration' to='/'>
+					<div className='nav-link-tile'>View the platform!</div>
 				</Link>
-				<Link to='/' style={styleObj}>
-					<div>Video part go here </div>
+				<Link className='no-decoration' to='/'>
+					<div className='nav-link-tile'>View the videos!</div>
 				</Link>
 			</div>
 		)
