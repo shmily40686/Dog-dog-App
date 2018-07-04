@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { changeLocation } from '../../action/changeLocation.js'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 const mapStateToProps = (state, props) => {
 
@@ -27,7 +27,7 @@ class LogoInfoBox extends React.Component {
 		this.state = {
 			logIn : true,
 			locationBox: false,
-			
+
 		}
 
 	this.changeLocation = this.changeLocation.bind(this);
@@ -58,12 +58,21 @@ class LogoInfoBox extends React.Component {
 		return(
 			<div>
 				<div className="LogoInfoBox" style={{display: this.state.logIn ? 'block' : 'none'}}>
-					<h3 onClick={this.switchToUserPage}>{`Hi ${this.props.user ? this.props.user : "buddy"}`}</h3>
-					<p onClick={this.clickSwith}>{this.props.location}</p>
-				</div>
-				<div className="changeLocationBox" style={{display: this.state.locationBox ? 'block' : 'none'}}>
-					<input type="text" onChange={this.changeLocation}/>
-					<button onClick={this.clickSwith}>change location</button>
+					{this.props.user ? (
+						<div>
+							<h3 onClick={this.switchToUserPage}>
+							Hi {this.props.user}
+							</h3>
+							<div className="changeLocationBox" style={{display: this.state.locationBox ? 'block' : 'none'}}>
+								<input type="text" onChange={this.changeLocation}/>
+								<button onClick={this.clickSwith}>change location</button>
+							</div>
+						</div>
+					) : (
+						<Link className='no-decoration' to='/login'>
+							<h3 className='centered welcome-msg'>Sign in to see the dogs!</h3>
+						</Link>
+					)}
 				</div>
 			</div>
 		)

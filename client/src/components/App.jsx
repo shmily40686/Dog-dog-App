@@ -17,9 +17,9 @@ class App extends React.Component {
 
 	render() {
 		return(
-			
+
 			<BrowserRouter>
-				<div>
+				<div className='full-width'>
 					<Nav/>
 					<LogoInfoBox/>
 						<Switch>

@@ -82,6 +82,35 @@ app.post('/api/viewUp/:postId', function(req,res) {
 	})
 })
 
+app.post('/api/editPost', function(req,res) {
+	console.log("editPost",req.body)
+	dbModels.DogPost.update({_id: req.body.id}, { $set: {
+			photo: req.body.photo,
+	    	title: req.body.title,
+	    	type: req.body.type,
+	    	size: req.body.size,
+	    	sex: req.body.sex,
+	    	year: req.body.year,
+	    	month: req.body.month,
+	    	color: req.body.color,
+	    	fullPrice: req.body.fullPrice,
+	    	deposit: req.body.deposit,
+	    	email: req.body.email,
+	    	call: req.body.call,
+	    	street: req.body.street,
+	    	city: req.body.city,
+	    	state: req.body.state,
+	    	zipcode: req.body.zipcode,
+	    	description: req.body.description
+	}},function(err,data) {
+		if (err) {
+			res.status(404).send(err)
+		} else {
+			res.status(200).send(data)
+		}
+	})
+})
+
 app.post('/api/deletePosts', function(req,res) {
 	var user = req.body.user;
 	var id = req.body.id;
@@ -124,14 +153,17 @@ app.post('/api/login', function (req, res) {
 		if (err) {
 			res.status(404).send(err)
 		} else {
-			console.log(data)
-			var password = data.userPassword
-			var match = bcrypt.compareSync(req.body.password, password);
-			console.log("match",match)
-			if (match) {
-				res.status(200).send(data.userName)
+			if (!data) {
+				res.status(404).send('No user')
 			} else {
-				res.status(404).send('fail')
+				var password = data.userPassword
+				var match = bcrypt.compareSync(req.body.password, password);
+				console.log("match",match)
+				if (match) {
+					res.status(200).send(data.userName)
+				} else {
+					res.status(404).send('fail')
+				}
 			}
 		}
 	})
