@@ -153,14 +153,17 @@ app.post('/api/login', function (req, res) {
 		if (err) {
 			res.status(404).send(err)
 		} else {
-			console.log(data)
-			var password = data.userPassword
-			var match = bcrypt.compareSync(req.body.password, password);
-			console.log("match",match)
-			if (match) {
-				res.status(200).send(data.userName)
+			if (!data) {
+				res.status(404).send('No user')
 			} else {
-				res.status(404).send('fail')
+				var password = data.userPassword
+				var match = bcrypt.compareSync(req.body.password, password);
+				console.log("match",match)
+				if (match) {
+					res.status(200).send(data.userName)
+				} else {
+					res.status(404).send('fail')
+				}
 			}
 		}
 	})

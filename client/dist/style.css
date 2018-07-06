@@ -1,22 +1,118 @@
-.nav{
-	display: flex;
-	margin: auto;
-    background-color: #e9eaec
-    width: 1200px;
-    height: 40px
+#app {
+    margin: -8px;
+    font-family: PingFang SC, Open Sans, Helvetica Neue, Helvetica, Arial, "sans-serif";
 }
 
-.title{
-	width: 150px;
+.centered {
+    margin: auto;
     text-align: center;
-    background-color: #c5c9ce;
-    font-size: 35px;
+}
+
+.centered-container {
+    margin: auto;
+    display: flex;
+}
+
+.centered-full {
+    width: 100%;
+    margin: auto;
+}
+
+.sale-selection {
+    width: 50%;
+    line-height: 50px;
+    text-align: center;
+    box-shadow: 5px 5px 5px rgba(200, 200, 200, .4);
+    margin: 15px;
+    border-radius: 2.5px;
+    background-color: rgba(200, 200, 200, 0.1);
     text-decoration: none;
     color: black;
 }
 
-.title:hover {
+.sale-selection:hover {
+    background-color: rgba(200, 200, 200, 0.25);
+    box-shadow: 5px 5px 5px #8fcee5;
+}
+
+.welcome-msg {
+    margin: 15px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.sign-in-button {
     background-color: #8fcee5;
+    color: #fff;
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 2.5px;
+    text-transform: uppercase;
+}
+
+.LogoInfoBox {
+    padding-left: 15px;
+}
+
+.nav-link-tile {
+    border: 2px solid #8fcee5;
+    border-radius: 2.5px;
+    color: black;
+    margin: 15px;
+    line-height: 50px;
+    padding-left: 15px;
+}
+
+.no-posts-message {
+    margin-left: 15px;
+}
+
+.no-decoration {
+    text-decoration: none;
+    color: black;
+}
+
+.nav-link-tile:hover {
+    cursor: pointer;
+}
+
+.nav-link-tile-container {
+    text-decoration: none;
+}
+
+.sign-in-button:hover {
+    background-color: #8dbdd4;
+    cursor: pointer;
+}
+
+.signup {
+    background-color: #e8e8e8;
+}
+
+.nav{
+    display: flex;
+    margin: auto;
+    background-color: #e9eaec;
+    height: 40px;
+    overflow: hidden;
+    text-transform: uppercase;
+}
+
+.title{
+	width: 20%;
+    text-align: center;
+    background-color: #c5c9ce;
+    font-size: 30px;
+    text-decoration: none;
+    color: rgba(18, 18, 18, .8);
+}
+
+.title:hover {
+    border-bottom: 5px solid #8fcee5;
+
 }
 
 .SeachBar-Sort {
@@ -74,9 +170,9 @@
 }
 
 .post {
-    background-color: #e3e9ee; 
+    background-color: #e3e9ee;
     border: 1px solid #ddd;
-    border-radius: 5px; 
+    border-radius: 5px;
     width: 600px;
 }
 
@@ -115,6 +211,24 @@
     background-color: #c4c4c4;
 }
 
+.form-selection-2 {
+    display: flex;
+    width: 100%;
+}
+
+.form-selection-2-choice {
+    width: 50%;
+    text-align: center;
+    background-color: #e8e8e8;
+    line-height: 50px;
+    margin-bottom: -25px;
+    border-bottom: 1px solid rgba(18, 18, 18, .1);
+}
+
+.selected {
+    background-color: #fafafa;
+    border-bottom: 5px solid #8fcee5;
+}
 
 .form-style-7{
     max-width:400px;
@@ -135,7 +249,7 @@
 .form-style-7 ul{
     list-style:none;
     padding:0;
-    margin:0;   
+    margin:0;
 }
 .form-style-7 li{
     display: block;
@@ -171,7 +285,7 @@
 .form-style-7 input[type="url"],
 .form-style-7 input[type="password"],
 .form-style-7 textarea,
-.form-style-7 select 
+.form-style-7 select
 {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -196,7 +310,7 @@
 .form-style-7 input[type="url"]:focus,
 .form-style-7 input[type="password"]:focus,
 .form-style-7 textarea:focus,
-.form-style-7 select:focus 
+.form-style-7 select:focus
 {
 }
 .form-style-7 li > span{
@@ -319,6 +433,7 @@
     width: auto;
     padding: 10px 18px;
     background-color: #f44336;
+    color: #fff;
 }
 
 .imgcontainer {
@@ -344,20 +459,29 @@ span.psw {
 
 .loginButton {
     background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
+    color: #fff;
     width: 100%;
+    margin: auto;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 2.5px;
+    text-transform: uppercase;
 }
 
 .loginButton:hover {
-    opacity: 0.8;
+    background-color: #3c9f40;
+    cursor: pointer;
 }
+
 .cancelbtn:hover {
     opacity: 0.8;
 }
+
+.remember-me {
+    padding: 12px 20px;
+    margin: 8px 0;
+}
+
 .login {
     width: 100%;
     padding: 12px 20px;
@@ -369,7 +493,6 @@ span.psw {
 
 .logIn {
     background-color: #e8e8e8;
-    border-radius: 5%
 }
 
 

@@ -125,7 +125,7 @@ class logIn extends React.Component {
 			console.log(this.state.password)
 			console.log(this.state.repeatPassword)
 		}
-  		
+
 	}
 
 
@@ -133,53 +133,52 @@ class logIn extends React.Component {
 		if (this.state.signupOrlogin) {
 			return (
 			<div className="signup">
-					<h2 className="avatar" >Sign Up</h2>
-						<form  onSubmit={this.submitSignUp}>
-						  <div className="imgcontainer">
-						    <img src="img_avatar2.png" alt="Avatar" className="avatar"/>
-						  </div>
+					<form  onSubmit={this.submitSignUp}>
+					  <div className="imgcontainer">
+					    <img src="img_avatar2.png" alt="Avatar" className="avatar"/>
+					  </div>
 
-						  <div className="container">
-						    <label htmlFor="uname"><b>Username</b></label>
-						    <input className="login" type="text" placeholder="Enter Username" name="uname" onChange={this.getUsername}/>
+					  <div className="container">
+					    <label htmlFor="uname"><b>Username</b></label>
+					    <input className="login" type="text" placeholder="Enter Username" name="uname" onChange={this.getUsername}/>
 
-						    <label htmlFor="psw"><b>Password</b></label>
-						    <input className="login" type="password" placeholder="Enter Password" name="psw"  onChange={this.getPassword}/>
-						      
-						    <label htmlFor="psw"><b>Repeat Password</b></label>
-						    <input className="login" type="password" placeholder="Repeat Password " name="psw"  onChange={this.getRepeatPassword}/> 
-						    
-						    <button className="loginButton"type="submit">Sign Up</button>
-						  </div>
-						</form>
+					    <label htmlFor="psw"><b>Password</b></label>
+					    <input className="login" type="password" placeholder="Enter Password" name="psw"  onChange={this.getPassword}/>
+
+					    <label htmlFor="psw"><b>Repeat Password</b></label>
+					    <input className="login" type="password" placeholder="Repeat Password " name="psw"  onChange={this.getRepeatPassword}/>
+
+					    <button className="loginButton"type="submit">Sign Up</button>
+					  </div>
+					</form>
 				</div>
 			)
 		} else {
 			return (
 				<div className="logIn">
-					<h2 className="avatar" >Login</h2>
-						<form  onSubmit={this.submitLogIn}>
-						  <div className="imgcontainer">
-						    <img src="img_avatar2.png" alt="Avatar" className="avatar"/>
-						  </div>
+					<form onSubmit={this.submitLogIn}>
+					  <div className="imgcontainer">
+					    <img src="img_avatar2.png" alt="Avatar" className="avatar"/>
+					  </div>
 
-						  <div className="container">
-						    <label htmlFor="uname"><b>Username</b></label>
-						    <input className="login" type="text" placeholder="Enter Username" name="uname" onChange={this.getUsername}/>
+					  <div className="container">
+					    <label htmlFor="uname"><b>Username</b></label>
+					    <input className="login" type="text" placeholder="Enter Username" name="uname" onChange={this.getUsername}/>
 
-						    <label htmlFor="psw"><b>Password</b></label>
-						    <input className="login" type="password" placeholder="Enter Password" name="psw"  onChange={this.getPassword}/>
-						        
-						    <button className="loginButton"type="submit">Login</button>
-						    <label>
-						      <input className="login" type="checkbox"  name="remember"/> Remember me
-						    </label>
-						  </div>
-						  <div className="container" style={{"backgroundColor":"#f1f1f1"}}>
-						    <button type="button" className="cancelbtn">Cancel</button>
-						    <span className="psw">Forgot <a href="#">password?</a></span>
-						  </div>
-						</form>
+					    <label htmlFor="psw"><b>Password</b></label>
+					    <input className="login" type="password" placeholder="Enter Password" name="psw"  onChange={this.getPassword}/>
+					    <div className='centered-container'>
+					    	<button className="loginButton" type="submit">Login</button>
+					    </div>
+					    <div>
+					      <input className="remember-me" type="checkbox"  name="remember"/> Remember me
+					    </div>
+					  </div>
+					  <div className="container">
+					    <button type="button" className="cancelbtn">Cancel</button>
+					    <span className="psw">Forgot <a href="#">password?</a></span>
+					  </div>
+					</form>
 				</div>
 			)
 		}
@@ -187,9 +186,9 @@ class logIn extends React.Component {
 	render() {
 		return(
 			<div>
-				<div > 
-					<div onClick={this.changeToLogIn}>Login</div>
-					<div onClick={this.changeToSignUp}>Sign Up</div>
+				<div className='form-selection-2'>
+					<div className={`form-selection-2-choice${!this.state.signupOrlogin ? ' selected' : ''}`} onClick={this.changeToLogIn}>Login</div>
+					<div className={`form-selection-2-choice${this.state.signupOrlogin ? ' selected' : ''}`} onClick={this.changeToSignUp}>Sign Up</div>
 				</div>
 				<div>{this.signupOrlogin()}</div>
 			</div>
