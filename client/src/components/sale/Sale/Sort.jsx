@@ -27,7 +27,7 @@ class Sort extends React.Component {
 	  super(props);
 	    this.state = {
 	    	show: false,
-
+	    	selectedField: ''
 	    }
 	    this.changeShowOrHide = this.changeShowOrHide.bind(this);
 	    this.clickSort = this.clickSort.bind(this);
@@ -39,54 +39,65 @@ class Sort extends React.Component {
 	}
 
 
-	clickSort (e) {
-		var text = e.target.innerText
+	clickSort (text) {
+		this.setState({
+			selectedField: text
+		})
+		var newPosts = this.props.posts.slice(0);
 		if (text === 'New Post') {
-			var newPosts = this.props.posts.sort(function(a,b){
+			newPosts = newPosts.sort(function(a,b){
 				return moment(b.creatAt).format("YYYYMMDDHHMM") - moment(a.creatAt ).format("YYYYMMDDHHMM");
 			})
-			this.props.changePostsToSort(newPosts)
 		} else if (text === 'Hot Post') {
-			var newPosts = this.props.posts.sort(function(a,b){
-				return b.view - a.view 
+			newPosts = newPosts.sort(function(a,b){
+				return b.view - a.view
 			})
-			this.props.changePostsToSort(newPosts)
 		} else if (text === 'Price Up') {
-			var newPosts = this.props.posts.sort(function(a,b){
-				return a.info.price.fullPrice - b.info.price.fullPrice 
+			newPosts = newPosts.sort(function(a,b){
+				return a.info.price.fullPrice - b.info.price.fullPrice
 			})
-			this.props.changePostsToSort(newPosts)
 		} else if (text === 'Age Up') {
-			var newPosts = this.props.posts.sort(function(a,b){
-				return parseInt('' + a.info.age.year + a.info.age.month) - parseInt('' + b.info.age.year + b.info.age.month)  
+			newPosts = newPosts.sort(function(a,b){
+				return parseInt('' + a.info.age.year + a.info.age.month) - parseInt('' + b.info.age.year + b.info.age.month)
 			})
-			this.props.changePostsToSort(newPosts)
 		} else if (text === 'Price Down') {
-			var newPosts = this.props.posts.sort(function(a,b){
-				return b.info.price.fullPrice - a.info.price.fullPrice 
+			newPosts = newPosts.sort(function(a,b){
+				return b.info.price.fullPrice - a.info.price.fullPrice
 			})
-			this.props.changePostsToSort(newPosts)
 		}  else if (text === 'Age Down') {
-			var newPosts = this.props.posts.sort(function(a,b){
-				return parseInt('' + b.info.age.year + b.info.age.month) - parseInt('' + a.info.age.year + a.info.age.month)  
+			newPosts = newPosts.sort(function(a,b){
+				return parseInt('' + b.info.age.year + b.info.age.month) - parseInt('' + a.info.age.year + a.info.age.month)
 			})
-			this.props.changePostsToSort(newPosts)
 		}
-
+		this.props.changePostsToSort(newPosts)
 	}
 
 	render() {
 		return(
-			<div className="dropdown">
-				<button className="dropbtn" onClick={this.changeShowOrHide}>Sort</button>
-			  <div onClick={this.clickSort} className="dropdown-content" style={{display: this.state.show ? 'block' : 'none'}}>
-			    <div className="newpost">New Post</div>
-			    <div className="hotpost">Hot Post</div>
-			    <div className="price">Price Up</div>
-			    <div className="price">Price Down</div>
-			    <div className="age">Age Up</div>
-			    <div className="age">Age Down</div>
-			  </div>
+			<div>
+				<h3 className={this.state.show ? 'selected-option' : 'sort-header'} onClick={this.changeShowOrHide}>Sort</h3>
+				{this.state.show ? (
+					<div>
+				    <div className={this.state.selectedField === 'New Post' ? 'selected-text sort-item' : 'sort-item'} onClick={this.clickSort.bind(null, "New Post")}>
+				    	New Post
+				    </div>
+				    <div className={this.state.selectedField === 'Hot Post' ? 'selected-text sort-item' : 'sort-item'} onClick={this.clickSort.bind(null, "Hot Post")}>
+				    	Hot Post
+				    </div>
+				    <div className={this.state.selectedField === 'Price Up' ? 'selected-text sort-item' : 'sort-item'} onClick={this.clickSort.bind(null, "Price Up")}>
+				    	Price Up
+				    </div>
+				    <div className={this.state.selectedField === 'Price Down' ? 'selected-text sort-item' : 'sort-item'} onClick={this.clickSort.bind(null, "Price Down")}>
+				    	Price Down
+				    </div>
+				    <div className={this.state.selectedField === 'Age Up' ? 'selected-text sort-item' : 'sort-item'} onClick={this.clickSort.bind(null, "Age Up")}>
+				    	Age Up
+				    </div>
+				    <div className={this.state.selectedField === 'Age Down' ? 'selected-text sort-item' : 'sort-item'} onClick={this.clickSort.bind(null, "Age Down")}>
+				    	Age Down
+				    </div>
+				   </div>
+				) : null}
 			</div>
 		)
 	}
