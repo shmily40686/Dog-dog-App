@@ -28,6 +28,8 @@
     background-color: rgba(200, 200, 200, 0.1);
     text-decoration: none;
     color: black;
+    -webkit-transition: background-color 0.5s, box-shadow 0.5s;
+    transition: background-color 0.5s, box-shadow 0.5s;
 }
 
 .sale-selection:hover {
@@ -41,6 +43,7 @@
 
 .full-width {
     width: 100%;
+    min-width: 750px;
 }
 
 .sign-in-button {
@@ -64,6 +67,14 @@
     margin: 15px;
     line-height: 50px;
     padding-left: 15px;
+    -webkit-transition: background-color border-color 0.5s;
+    transition: background-color 0.5s;
+    box-shadow: none;
+}
+
+.nav-link-tile:hover {
+    background-color: #8fcee5;
+    border-color: rgba(18, 18, 30, .4);
 }
 
 .no-posts-message {
@@ -108,32 +119,68 @@
     font-size: 30px;
     text-decoration: none;
     color: rgba(18, 18, 18, .8);
+    -webkit-transition: border-bottom 0.5s;
+    transition: border-bottom 0.5s;
 }
 
 .title:hover {
     border-bottom: 5px solid #8fcee5;
+}
 
+.selected-option {
+    border-bottom: 2px solid #8fcee5;
+}
+
+.sort-header {
+    cursor: pointer;
+}
+
+.sort-item {
+    cursor: pointer;
+}
+
+.filter-heading {
+    cursor: pointer;
+}
+
+.filter-control-container {
+    text-align: left;
+    float: right;
+    margin: 30px 30px;
+    width: 10%;
+}
+
+.filter-control-container-heading {
+    font-weight: 600;
+}
+
+.filter-control-container-item {
+    font-weight: 200;
+    cursor: pointer;
 }
 
 .SeachBar-Sort {
     display: flex;
-    margin: auto;
+    margin-right: 30px;
 }
 
 .SeachBar {
-    width: 800px
+    padding: 30px;
+    width: 90%;
+    min-width: 650px;
 }
 
 .SeachBar input {
-    width: 500px;
+    width: 65%;
     height: 30px;
+    margin-right: 5px;
 }
 
 .SeachBar button {
-    width: 100px;
-    height: 30px;
+    width: 15%;
+    height: 35px;
     background-color: #c7e283;
-    border-radius: 5px;
+    border-radius: 2.5px;
     font-size: 16px;
     color: white;
 
@@ -173,7 +220,8 @@
     background-color: #e3e9ee;
     border: 1px solid #ddd;
     border-radius: 5px;
-    width: 600px;
+    width: 80%;
+    margin: 30px;
 }
 
 .infoBoxEntrySale {
@@ -228,6 +276,10 @@
 .selected {
     background-color: #fafafa;
     border-bottom: 5px solid #8fcee5;
+}
+
+.selected-text {
+    color: #8fcee5;
 }
 
 .form-style-7{
@@ -333,6 +385,8 @@
     padding: 10px 20px 10px 20px;
     border-radius: 3px;
     color: #D2E2FF;
+    -webkit-transition: background 0.5s;
+    transition: 0.5s;
 }
 .form-style-7 input[type="submit"]:hover,
 .form-style-7 input[type="button"]:hover{
@@ -447,8 +501,8 @@ img.avatar {
 }
 
 .container {
-    padding: 10px;
-
+    padding: 15px;
+    margin: 15px;
 }
 
 span.psw {
@@ -494,5 +548,3 @@ span.psw {
 .logIn {
     background-color: #e8e8e8;
 }
-
-
