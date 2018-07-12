@@ -7,7 +7,7 @@ class EntrySale extends React.Component {
 	
 	render(){
 		return(
-			<div className='post'  onClick={()=>this.props.changeCurrentPost(this.props.post)}>
+			<div className='post'>
 				<h3 className='EntrySale-Title'>{this.props.post.title}</h3>
 				<img src={this.props.post.photo[0]} style={{width:'150px'}}/>
 				<div style={{width:'100px'}}>{this.props.post.type}</div>

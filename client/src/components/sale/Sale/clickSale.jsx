@@ -2,8 +2,21 @@ import React from 'react'
 import Gallery from 'react-photo-gallery';
 import Lightbox from 'react-images';
 import moment from 'moment';
-import axios from 'axios'
+import axios from 'axios';
+import { connect } from 'react-redux';
 
+
+const mapStateToProps = (state, props) => {
+	console.log('state: ', state)
+	return {
+		currentPost: state.currentPost
+	}
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+	return {
+	}
+}
 
 class ClickSale extends React.Component {
 
@@ -14,7 +27,8 @@ constructor(props) {
     	currentImage: 0,
     	photos: this.setPhotos(),
     	threePhotos : this.setPhotos().slice(0,3),
-    	text: null
+    	text: null,
+    	userClickEntry: false
     };
     this.closeLightbox = this.closeLightbox.bind(this);
     this.openLightbox = this.openLightbox.bind(this);
@@ -23,16 +37,18 @@ constructor(props) {
     this.addReply = this.addReply.bind(this);
     this.getText = this.getText.bind(this);
 
+
   }
 
   setPhotos () {
-  	var photos = this.props.currentPost.photo.map(function(uil) {
+  	console.log('props: ', this.props)
+  	var photos = this.props.currentPost ? this.props.currentPost.photo.map(function(uil) {
   		var obj = {};
   		obj.src = uil;
   		obj.width = 1;
   		obj.height = 0.7;
   		return obj
-  	})
+  	}) : []
   	return photos;
   }
 
@@ -88,8 +104,8 @@ constructor(props) {
 		  });
   	}
   }
-	
-	render(){
+
+  renderUsepageOrNormal () {
 		return(
 			<div>
 			<button onClick={this.props.changeView}>BACK</button>
@@ -152,7 +168,13 @@ constructor(props) {
 				</div>
 			</div>
 		)
+  }
+	
+	render(){
+		return(
+			this.renderUsepageOrNormal()
+		)
 	}
 }
 
-export default ClickSale;
+export default connect(mapStateToProps,mapDispatchToProps)(ClickSale);

@@ -4,6 +4,10 @@ import { addPosts, changePosts, removePost} from '../../action/changePost.js'
 import { addUsers, changeUsers} from '../../action/changeUser.js'
 import axios from 'axios'
 import EditPost from './EditPost.jsx'
+import ClickSale from '../sale/Sale/clickSale.jsx'
+import { Link } from 'react-router-dom'
+
+
 
 const mapStateToProps = (state, props) => {
 
@@ -42,7 +46,9 @@ class UserPage extends React.Component {
 	  	id: null,
 	  	editPost: false,
 	  	currentPage: 1,
-	    postsPerPage:5
+	    postsPerPage:5,
+	    entryPage: false,
+	    enrtyPost: null
 	  }
 
 	 this.renderUserPost = this.renderUserPost.bind(this);
@@ -50,12 +56,22 @@ class UserPage extends React.Component {
 	 this.editPost = this.editPost.bind(this);
 	 this.showComponent = this.showComponent.bind(this);
 	 this.handleClickPage = this.handleClickPage.bind(this);
+	 this.getEntryPost = this.getEntryPost.bind(this);
 	}
+
 
 	handleClickPage (e) {
   	this.setState({
   		currentPage: Number(e.target.id)
   	})
+  }
+
+  getEntryPost (post) {
+  	this.setState({
+  		enrtyPost: post,
+  		entryPage: true
+  	})
+  	console.log("enrtyPost",this.state.enrtyPost)
   }
 
 	editPost (post) {
@@ -132,47 +148,56 @@ class UserPage extends React.Component {
 			for (let i = 1; i <= Math.ceil(postList.length / this.state.postsPerPage); i++) {
 				pageNumbers.push(i)
 			}
-			return (
-				<div>
-					{currentPosts.length > 0 ? (
-						<div>
+			if ( this.state.entryPage === false ) {
+				return (
+					<div>
+						{currentPosts.length > 0 ? (
 							<div>
-								{currentPosts.map((post,i) => {
-						 			return(
-						 				<div className='post' key={i}>
-						 						<h3 >{post.title}</h3>
-												<img src={post.photo[0]} style={{width:'150px'}}/>
-												<div style={{width:'100px'}}>{post.type}</div>
-												<div >{post.info.age.year} year<span>{post.info.age.month} month</span></div>
-												<div >{post.location.city}<span>{post.location.state}</span></div>
-												<div >{post.info.price.fullPrice}</div>
-												<div >{post.info.sex}</div>
-												<div >{post.info.type}</div>
-												<div >{post.info.size}</div>
-												<div >{post.view}</div>
-												<button onClick={() => this.deletePost(post)}>Delete</button>
-												<button onClick={() => this.editPost(post)}>Edit</button>
-						 				</div>
-						 			)
-						 		})}
+								<div>
+									{currentPosts.map((post,i) => {
+							 			return(
+							 				<div className='post' key={i} onClick={() => this.getEntryPost(post)}>
+							 						<h3 >{post.title}</h3>
+													<img src={post.photo[0]} style={{width:'150px'}}/>
+													<div style={{width:'100px'}}>{post.type}</div>
+													<div >{post.info.age.year} year<span>{post.info.age.month} month</span></div>
+													<div >{post.location.city}<span>{post.location.state}</span></div>
+													<div >{post.info.price.fullPrice}</div>
+													<div >{post.info.sex}</div>
+													<div >{post.info.type}</div>
+													<div >{post.info.size}</div>
+													<div >{post.view}</div>
+													<button onClick={() => this.deletePost(post)}>Delete</button>
+													<button onClick={() => this.editPost(post)}>Edit</button>
+							 				</div>
+							 			)
+							 		})}
+								</div>
+								<ul className="page-numbers" >{
+									pageNumbers.map(number => {
+							          return (
+							            <li className="page-per-numbers" key={number} id={number} onClick={this.handleClickPage}>
+							              {number}
+							            </li>
+							          )
+							        })
+								}</ul>
 							</div>
-							<ul className="page-numbers" >{
-								pageNumbers.map(number => {
-						          return (
-						            <li className="page-per-numbers" key={number} id={number} onClick={this.handleClickPage}>
-						              {number}
-						            </li>
-						          )
-						        })
-							}</ul>
-						</div>
-					) : (
-						<div className='no-posts-message'>
-							<h3>Oh no! You don't have any posts yet!</h3>
-						</div>
-					)}
-				</div>
+						) : (
+							<div className='no-posts-message'>
+								<h3>Oh no! You don't have any posts yet!</h3>
+							</div>
+						)}
+					</div>
+				)				
+		} else {
+			return (
+				<ClickSale currentPost={this.state.enrtyPost}/>
+
 			)
+
+		}
+
 	}
 
 

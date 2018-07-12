@@ -27,6 +27,7 @@ export const changePosts = function (posts) {
 	}
 }
 
+
 export const removePost = function (post) {
 	return {
 		type: REMOVE_POST,

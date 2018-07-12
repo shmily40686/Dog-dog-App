@@ -41,10 +41,13 @@ class Sort extends React.Component {
 
 	clickSort (e) {
 		var text = e.target.innerText
+		// console.log ("clickSort",text)
+
 		if (text === 'New Post') {
 			var newPosts = this.props.posts.sort(function(a,b){
 				return moment(b.creatAt).format("YYYYMMDDHHMM") - moment(a.creatAt ).format("YYYYMMDDHHMM");
 			})
+			// console.log("newPosts",newPosts)
 			this.props.changePostsToSort(newPosts)
 		} else if (text === 'Hot Post') {
 			var newPosts = this.props.posts.sort(function(a,b){

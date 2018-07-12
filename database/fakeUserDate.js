@@ -602,5 +602,5 @@ const insertSampleUser = function() {
 };
 
 
-insertSampleUser();
-// insertSamplePost();
+//insertSampleUser();
+//insertSamplePost();

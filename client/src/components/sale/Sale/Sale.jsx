@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addPosts, changePosts } from '../../../action/changePost.js'
+import { changeCurrentPosts } from '../../../action/changeCurrentPost.js'
 import { addUsers } from '../../../action/changeUser.js'
 import axios from 'axios'
 import EntrySale from './EntrySale.jsx'
@@ -8,6 +9,7 @@ import SeachBar from './SeachBar.jsx'
 import Sort from './Sort.jsx'
 import ClickSale from './clickSale.jsx'
 import FilterBox from './FilterBox.jsx'
+import { Link } from 'react-router-dom'
 
 
 // import { fakeData } from './fakedata.js';
@@ -30,6 +32,9 @@ const mapDispatchToProps = (dispatch, props) => {
 		},
 		changePostsToStore: function (posts) {
 			dispatch(changePosts(posts))
+		},
+		changeCurrentPostToStore: function (post) {
+			dispatch(changeCurrentPosts(post))
 		}
 	}
 }
@@ -112,6 +117,7 @@ class Sale extends React.Component {
 			currentPost:post
 		},function() {
 			console.log("currentPost", app.state.currentPost)
+			app.props.changeCurrentPostToStore(post)
 			axios({
 	  		method: 'post',
 	  		url: `http://localhost:3000/api/viewUp/${app.state.currentPost._id}`,
@@ -154,18 +160,24 @@ class Sale extends React.Component {
 			const indexOfLastPost = this.state.currentPage * this.state.postsPerPage;
 			const indexOfFirstPost = indexOfLastPost - this.state.postsPerPage;
 			const currentPosts = this.props.posts.slice(indexOfFirstPost, indexOfLastPost)
+			console.log('if')
 			return (
 				<div>
 					{currentPosts.map((post,i) => {
 						return(
-							<EntrySale post={post} key={i} changeView={this.changeView} changeCurrentPost={this.changeCurrentPost} />
+							<Link to={`/sale/${post._id}`} onClick={this.changeCurrentPost.bind(null, post)} >
+								<EntrySale post={post} key={i}/>
+							</Link>
 						)
 					})}
 				</div>
 			)	
 		} else {
+			console.log('else')
 			return (
+	
 				<ClickSale currentPost={this.state.currentPost}  changeComments={this.changeComments} changeView={this.changeView}/>
+
 			)
 		}
 	}
