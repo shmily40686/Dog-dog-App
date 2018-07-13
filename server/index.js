@@ -129,6 +129,8 @@ app.post('/api/deletePosts', function(req,res) {
 	})
 })
 
+
+
 app.get('/api/posts', function (req, res) {
 	dbModels.DogPost.find({}, function (err, data) {
 		// console.log('data: ', data)
@@ -136,6 +138,8 @@ app.get('/api/posts', function (req, res) {
 		res.status(200).send(JSON.stringify(data))
 	})
 })
+
+
 
 app.get('/api/users', function (req, res) {
 	dbModels.User.find({}, function (err, data) {
@@ -145,6 +149,17 @@ app.get('/api/users', function (req, res) {
 	})
 })
 
+
+app.get('/api/getOnePost/:postId', function(req, res) {
+	var id = req.params.postId;
+	dbModels.DogPost.findOne({_id : id}, function (err, data) {
+		if (err) {
+			res.status(404).send(err)
+		} else {
+			res.status(200).send(data)
+		}
+	})
+})
 
 
 app.post('/api/login', function (req, res) {

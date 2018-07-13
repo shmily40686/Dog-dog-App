@@ -10,6 +10,7 @@ import ForSale from './sale/ForSale/ForSale.jsx'
 import ChosePage from './sale/ChosePage.jsx'
 import logIn from './logIn/logIn.jsx'
 import UserPage from './user/UserPage.jsx'
+import EntryUserPost from './user/EntryUserPost.jsx'
 
 
 
@@ -24,12 +25,13 @@ class App extends React.Component {
 					<LogoInfoBox/>
 						<Switch>
 							<Route exact path='/' component={Welcome} />
-							<Route path='/user' component={UserPage} />
+							<Route exact path='/user' component={UserPage} />
 							<Route path='/login' component={logIn} />
 							<Route path='/home' component={Home} />
 							<Route path='/sale' component={Sale} />
 							<Route path='/forSale' component={ForSale} />
 							<Route path='/chosePage' component={ChosePage} />
+							<Route path='/user/:postid' component={EntryUserPost} />
 						</Switch>
 				</div>
 			</BrowserRouter>

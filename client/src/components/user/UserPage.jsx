@@ -2,8 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { addPosts, changePosts, removePost} from '../../action/changePost.js'
 import { addUsers, changeUsers} from '../../action/changeUser.js'
+import { changeCurrentPost } from '../../action/changeCurrentPost.js'
 import axios from 'axios'
 import EditPost from './EditPost.jsx'
+import { Link } from 'react-router-dom'
 
 const mapStateToProps = (state, props) => {
 
@@ -11,7 +13,8 @@ const mapStateToProps = (state, props) => {
 		users: state.users,
 		posts: state.posts,
 		user: state.user,
-		login: state.login
+		login: state.login,
+	//	currentPost: state.currentPost
 	}
 }
 
@@ -30,6 +33,9 @@ const mapDispatchToProps = (dispatch, props) => {
 		changeUsersToStore: function (users) {
 			dispatch(changeUsers(users))
 		}
+	//	changeCurrentPostToStroe: function (post) {
+	//		dispatch(changeCurrentPost(post))
+	//	}
 	}
 }
 
@@ -50,7 +56,12 @@ class UserPage extends React.Component {
 	 this.editPost = this.editPost.bind(this);
 	 this.showComponent = this.showComponent.bind(this);
 	 this.handleClickPage = this.handleClickPage.bind(this);
+	 // this.clickSetCurrentPost = this.clickSetCurrentPost.bind(this);
 	}
+
+	// clickSetCurrentPost (post) {
+	// 	this.props.changeCurrentPostToStroe(post)
+	// }
 
 	handleClickPage (e) {
   	this.setState({
@@ -139,8 +150,11 @@ class UserPage extends React.Component {
 							<div>
 								{currentPosts.map((post,i) => {
 						 			return(
-						 				<div className='post' key={i}>
+						 				
+						 				<div className='post' key={i} >
+						 					<Link to={`/user/${post._id}`} >
 						 						<h3 >{post.title}</h3>
+						 					</Link>
 												<img src={post.photo[0]} style={{width:'150px'}}/>
 												<div style={{width:'100px'}}>{post.type}</div>
 												<div >{post.info.age.year} year<span>{post.info.age.month} month</span></div>
@@ -152,7 +166,9 @@ class UserPage extends React.Component {
 												<div >{post.view}</div>
 												<button onClick={() => this.deletePost(post)}>Delete</button>
 												<button onClick={() => this.editPost(post)}>Edit</button>
+										
 						 				</div>
+						 			
 						 			)
 						 		})}
 							</div>
@@ -212,7 +228,6 @@ class UserPage extends React.Component {
 	}
 
 	render() {
-
 		return(
 			<div className="UserPage">
 				<div>{this.renderUserPost()}</div>
