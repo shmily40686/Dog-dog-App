@@ -59,8 +59,6 @@ class Sale extends React.Component {
 
 	componentDidMount () {
 		console.log('componentDidMount')
-		console.log('currentPost',this.state.currentPost)
-
 		fetch('http://localhost:3000/api/posts')
 			.then(res => {
 				console.log('res: ' ,res)
