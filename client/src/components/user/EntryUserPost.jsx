@@ -27,8 +27,8 @@ constructor(props) {
     super(props);
     this.state = { 
     	currentImage: 0,
-    	photos: this.setPhotos(),
-    	threePhotos : this.setPhotos().slice(0,3),
+    	photos: [] ,
+    	threePhotos : [],
     };
     this.closeLightbox = this.closeLightbox.bind(this);
     this.openLightbox = this.openLightbox.bind(this);
@@ -40,7 +40,7 @@ constructor(props) {
 
   componentDidMount() {
   	var id = this.props.match.params.postid;
-
+  	var app = this;
 			fetch(`http://localhost:3000/api/getOnePost/${id}`)
 			.then(res => {
 				console.log('res: ' ,res)
@@ -48,6 +48,10 @@ constructor(props) {
 			}).then((data) => {
 				console.log("currentPost",data)
 				this.props.changeCurrentPostToStore(data)
+				this.setState({
+					photos:this.setPhotos(),
+					threePhotos: this.setPhotos().slice(0,3)
+				})
 			})
 			.catch(function (err) {
 				console.error('error getting data: ', err)
@@ -55,16 +59,13 @@ constructor(props) {
   }
 
 	setPhotos () {
-		var photos = [];
-		if (this.props.currentPost && this.props.currentPost.photo && Array.isArray(this.props.currentPost.photo)) {
-  		photos = this.props.currentPost.photo.map(function(uil) {
-	  		var obj = {};
-	  		obj.src = uil;
-	  		obj.width = 1;
-	  		obj.height = 0.7;
-	  		return obj
-	  	})
-  	}
+  	var photos = this.props.currentPost.photo.map(function(uil) {
+  		var obj = {};
+  		obj.src = uil;
+  		obj.width = 1;
+  		obj.height = 0.7;
+  		return obj
+  	})
   	return photos;
   }
 
