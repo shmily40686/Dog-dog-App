@@ -10,7 +10,7 @@ class ClickSale extends React.Component {
 
 constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
     	currentImage: 0,
     	photos: this.setPhotos(),
     	threePhotos : this.setPhotos().slice(0,3),
@@ -88,16 +88,16 @@ constructor(props) {
 		  });
   	}
   }
-	
+
 	render(){
 		return(
-			<div>
-			<button onClick={this.props.changeView}>BACK</button>
-				<h1>{this.props.currentPost.title}</h1>
+			<div className='margin-left-30'>
+			  <button className='basic-btn' onClick={this.props.changeView}>BACK</button>
+				<h1 className='post-page-title'>{this.props.currentPost.title}</h1>
 				<div>
 					<div>
-	        <Gallery photos={this.state.threePhotos} onClick={this.openLightbox} />
-	        </div>
+  	        <Gallery photos={this.state.threePhotos} onClick={this.openLightbox} />
+  	      </div>
 	        <Lightbox images={this.state.photos}
 	          onClose={this.closeLightbox}
 	          onClickPrev={this.gotoPrevious}
@@ -106,7 +106,7 @@ constructor(props) {
 	          isOpen={this.state.lightboxIsOpen}
 	        />
 				</div>
-				<div className='infoBox'>
+				<div className='post-page-box'>
 					<h3 className='infoTitle'>Info</h3>
 					<div>Type {this.props.currentPost.info.type}</div>
 					<div>Ago {this.props.currentPost.info.age.year} year<span>{this.props.currentPost.info.age.month} month</span></div>
@@ -114,41 +114,41 @@ constructor(props) {
 					<div>Sex {this.props.currentPost.info.sex}</div>
 					<div>Color {this.props.currentPost.info.color}</div>
 				</div>
-				<div className='priceBox'>
+				<div className='post-page-box'>
 					<h3 className='priceTitle' >Price</h3>
 					<div>Full-Price {this.props.currentPost.info.price.fullPrice}</div>
 					<div>Deposit {this.props.currentPost.info.price.deposit}</div>
 				</div>
-				<div className='connectBox'>
+				<div className='post-page-box'>
 					<h3 className='connectTitle'>Connect</h3>
 					<div>Email {this.props.currentPost.info.connect.email}</div>
 					<div>Call {this.props.currentPost.info.connect.call}</div>
 				</div>
-				<div className='locationBox'>
+				<div className='post-page-box'>
 					<h3 className='locationTitle'>Location</h3>
 					<div>{this.props.currentPost.location.city}<span>{this.props.currentPost.location.state}</span></div>
 				</div>
-				<div className='descriptionBox'>
+				<div className='post-page-box'>
 					<h3 className='descriptionTitle'>Description</h3>
 					<div>{this.props.currentPost.description}</div>
 				</div>
-
-
 				<div>
 					<h3>Comments</h3>
-					<div>{
-						this.props.currentPost.comments.map((comment,i) => {
-							return(
-							 <div comment={comment} key={i} >
-							 	 <div>{comment.user }<span >{moment(comment.creatAt).startOf('hour').fromNow()}</span></div>
-							 	 <div>{comment.text}</div>
-							 	 <button>Reply</button>
-							 </div>
-							)
-						})
-					}</div>
+					<div>
+            {
+  						this.props.currentPost.comments.map((comment,i) => {
+  							return(
+  							 <div comment={comment} key={i} >
+  							 	 <div>{comment.user }<span >{moment(comment.creatAt).startOf('hour').fromNow()}</span></div>
+  							 	 <div>{comment.text}</div>
+  							 	 <button className='basic-btn'>Reply</button>
+  							 </div>
+  							)
+  						})
+            }
+          </div>
 					<textarea rows="4" cols="50" onChange={this.getText} /><br/>
-					<button onClick={this.addReply} >Add Reply</button>
+					<button className='basic-btn' onClick={this.addReply} >Add Reply</button>
 				</div>
 			</div>
 		)

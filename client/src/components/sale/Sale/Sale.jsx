@@ -176,7 +176,7 @@ class Sale extends React.Component {
 		const renderPageNumbers = pageNumbers.map(number => {
           return (
             <li className="page-per-numbers" key={number} id={number} onClick={this.handleClickPage}>
-              {number}
+              <span>{number}</span>
             </li>
           );
         });

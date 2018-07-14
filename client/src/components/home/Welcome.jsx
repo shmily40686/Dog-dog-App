@@ -47,7 +47,7 @@ class Welcome extends React.Component {
 					<div className="centered-full">
 						<Link to='/login' className='centered-container'>
 							<button className="sign-in-button centered">
-								Sign In
+								<span>Sign In</span>
 							</button>
 						</Link>
 					</div>
