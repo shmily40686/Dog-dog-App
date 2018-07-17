@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { changePosts } from '../../../action/changePost.js'
-
+import Sort from './Sort.jsx'
 
 const mapStateToProps = (state, props) => {
 
@@ -28,16 +28,16 @@ class FilterBox extends React.Component {
 	     large: false,
 	     male: false,
 	     female: false,
-	     posts: null
+	     posts: null,
+       show: false
 	    };
-	this.sizeSmallClickHandler = this.sizeSmallClickHandler.bind(this);
-	this.sizeMiddleClickHandler = this.sizeMiddleClickHandler.bind(this);
-	this.sizeLargeClickHandler = this.sizeLargeClickHandler.bind(this);
-	this.sexMaleClickHandler = this.sexMaleClickHandler.bind(this);
-	this.sexFemaleClickHandler = this.sexFemaleClickHandler.bind(this);
-  
+  	this.sizeSmallClickHandler = this.sizeSmallClickHandler.bind(this);
+  	this.sizeMiddleClickHandler = this.sizeMiddleClickHandler.bind(this);
+  	this.sizeLargeClickHandler = this.sizeLargeClickHandler.bind(this);
+  	this.sexMaleClickHandler = this.sexMaleClickHandler.bind(this);
+  	this.sexFemaleClickHandler = this.sexFemaleClickHandler.bind(this);
+    this.toggleShow = this.toggleShow.bind(this)
   }
-
 
   sizeSmallClickHandler () {
   	this.setState({
@@ -47,13 +47,13 @@ class FilterBox extends React.Component {
   			var newPost = this.props.posts.filter(function(post) {
   				return post.info.size === 'Small';
   			})
-  			
+
   			this.setState({
   				posts: this.props.posts
   			},function() {
   				this.props.changePostsToStore(newPost)
   			})
-  			
+
   		} else {
   			this.props.changePostsToStore(this.state.posts)
   		}
@@ -70,7 +70,7 @@ class FilterBox extends React.Component {
   			var newPost = this.props.posts.filter(function(post) {
   				return post.info.size === 'Middle';
   			})
-  			
+
   			this.setState({
   				posts: this.props.posts
   			},function() {
@@ -91,7 +91,7 @@ class FilterBox extends React.Component {
   			var newPost = this.props.posts.filter(function(post) {
   				return post.info.size === 'Large';
   			})
-  			
+
   			this.setState({
   				posts: this.props.posts
   			},function() {
@@ -112,7 +112,7 @@ class FilterBox extends React.Component {
   			var newPost = this.props.posts.filter(function(post) {
   				return post.info.sex === 'male';
   			})
-  			
+
   			this.setState({
   				posts: this.props.posts
   			},function() {
@@ -138,7 +138,7 @@ class FilterBox extends React.Component {
   			},function() {
   				this.props.changePostsToStore(newPost)
   			})
-  			
+
 
   		} else {
   			this.props.changePostsToStore(this.state.posts)
@@ -147,20 +147,28 @@ class FilterBox extends React.Component {
   	})
   }
 
+  toggleShow () {
+    this.setState({
+      show: !this.state.show
+    })
+  }
+
 	render() {
 		return(
-			<div >
-				<div style={{width:"100px"}}>
-					<h3>SIZE</h3>
-					<input type='checkbox' onClick={this.sizeSmallClickHandler}/>Small<br/>
-					<input type='checkbox' onClick={this.sizeMiddleClickHandler}/>Middle<br/>
-					<input type='checkbox' onClick={this.sizeLargeClickHandler}/>Large<br/>
-				</div>
-				<div style={{width:"100px"}}>
-					<h3>SEX</h3>
-					<input type='checkbox' onClick={this.sexMaleClickHandler}/>Male<br/>
-					<input type='checkbox' onClick={this.sexFemaleClickHandler}/>Female<br/>
-				</div>
+			<div className='filter-control-container'>
+        <Sort/>
+        <h3 className={this.state.show ? 'selected-option filter-heading' : 'filter-heading'} onClick={this.toggleShow}>Filters</h3>
+        {this.state.show ? (
+          <div>
+            <h3 className='filter-control-container-heading'>SIZE</h3>
+            <input className='filter-control-container-item' type='checkbox' onClick={this.sizeSmallClickHandler}/>Small<br/>
+            <input className='filter-control-container-item' type='checkbox' onClick={this.sizeMiddleClickHandler}/>Middle<br/>
+            <input className='filter-control-container-item' type='checkbox' onClick={this.sizeLargeClickHandler}/>Large<br/>
+            <h3 className='filter-control-container-heading'>SEX</h3>
+            <input className='filter-control-container-item' type='checkbox' onClick={this.sexMaleClickHandler}/>Male<br/>
+            <input className='filter-control-container-item' type='checkbox' onClick={this.sexFemaleClickHandler}/>Female<br/>
+          </div>
+        ) : null}
 			</div>
 		)
 	}

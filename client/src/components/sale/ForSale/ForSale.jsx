@@ -165,7 +165,7 @@ class ForSale extends React.Component {
   	getMonth(e) {
     this.setState({month: e.target.value});
     console.log("month",this.state.month)
-  } 
+  }
 
   	getColor(e) {
     this.setState({color: e.target.value});
@@ -175,7 +175,7 @@ class ForSale extends React.Component {
   	getFullPrice(e) {
     this.setState({fullPrice: e.target.value});
     console.log("fullPrice",this.state.fullPrice)
-  } 
+  }
 
   	getDeposit(e) {
     this.setState({deposit: e.target.value});
@@ -219,7 +219,7 @@ class ForSale extends React.Component {
 	render() {
 		return(
 			<div>
-				<h1>Let's fill up some imformation</h1>
+				<h1 className='centered'>Let's fill out some imformation</h1>
 					<form className="form-style-7" onSubmit={this.onSubmit}>
 					<ul>
 					<li>
@@ -326,7 +326,7 @@ class ForSale extends React.Component {
    				<input type="text" name="state" maxLength="100" placeholder="CA" onChange={this.getState}/>state:
    				<input type="text" name="zipcode" maxLength="100" placeholder="94578" onChange={this.getZipcode}/>zipcode:
     				<span>Enter your your address here</span>
-    			</li>						
+    			</li>
 					</ul>
 					description:
 							<input type="text" placeholder="let's start write something about your dog..." style={{width:"400px",height:"200px"}}  onChange={this.getDescription}/>
@@ -337,4 +337,4 @@ class ForSale extends React.Component {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (ForSale) 
+export default connect(mapStateToProps, mapDispatchToProps) (ForSale)

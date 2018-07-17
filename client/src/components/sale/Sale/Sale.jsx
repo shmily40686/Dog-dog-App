@@ -5,7 +5,6 @@ import { addUsers } from '../../../action/changeUser.js'
 import axios from 'axios'
 import EntrySale from './EntrySale.jsx'
 import SeachBar from './SeachBar.jsx'
-import Sort from './Sort.jsx'
 import ClickSale from './clickSale.jsx'
 import FilterBox from './FilterBox.jsx'
 
@@ -120,7 +119,7 @@ class Sale extends React.Component {
 		    	if (x._id === response.data._id) {
 		    		x.view++
 		    	}
-		    	return x ; 
+		    	return x ;
 		    })
 		    app.props.changePostsToStore(newPosts)
 
@@ -160,7 +159,7 @@ class Sale extends React.Component {
 						)
 					})}
 				</div>
-			)	
+			)
 		} else {
 			return (
 				<ClickSale currentPost={this.state.currentPost}  changeComments={this.changeComments} changeView={this.changeView}/>
@@ -177,20 +176,15 @@ class Sale extends React.Component {
 		const renderPageNumbers = pageNumbers.map(number => {
           return (
             <li className="page-per-numbers" key={number} id={number} onClick={this.handleClickPage}>
-              {number}
+              <span>{number}</span>
             </li>
           );
         });
 		return(
 			<div>
-				<div className="SeachBar-Sort">
-					<SeachBar/>
-					<FilterBox/>
-					<Sort/>
-				</div>
-				<div>
-					{this.showComponent()}
-				</div>
+				<FilterBox/>
+				<SeachBar/>
+				{this.showComponent()}
 				<ul className="page-numbers" >{renderPageNumbers}</ul>
 			</div>
 		)

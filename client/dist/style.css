@@ -3,19 +3,20 @@
     font-family: PingFang SC, Open Sans, Helvetica Neue, Helvetica, Arial, "sans-serif";
 }
 
-.centered {
+.centered-full {
+    width: 100%;
     margin: auto;
-    text-align: center;
 }
 
 .centered-container {
     margin: auto;
     display: flex;
+    text-decoration: none;
 }
 
-.centered-full {
-    width: 100%;
+.centered {
     margin: auto;
+    text-align: center;
 }
 
 .sale-selection {
@@ -28,6 +29,8 @@
     background-color: rgba(200, 200, 200, 0.1);
     text-decoration: none;
     color: black;
+    -webkit-transition: background-color 0.5s, box-shadow 0.5s;
+    transition: background-color 0.5s, box-shadow 0.5s;
 }
 
 .sale-selection:hover {
@@ -41,6 +44,7 @@
 
 .full-width {
     width: 100%;
+    min-width: 750px;
 }
 
 .sign-in-button {
@@ -64,6 +68,14 @@
     margin: 15px;
     line-height: 50px;
     padding-left: 15px;
+    -webkit-transition: background-color border-color 0.5s;
+    transition: background-color 0.5s;
+    box-shadow: none;
+}
+
+.nav-link-tile:hover {
+    background-color: #8fcee5;
+    border-color: rgba(18, 18, 30, .4);
 }
 
 .no-posts-message {
@@ -108,35 +120,64 @@
     font-size: 30px;
     text-decoration: none;
     color: rgba(18, 18, 18, .8);
+    -webkit-transition: border-bottom 0.5s;
+    transition: border-bottom 0.5s;
 }
 
 .title:hover {
     border-bottom: 5px solid #8fcee5;
+}
 
+.selected-option {
+    border-bottom: 2px solid #8fcee5;
+}
+
+.sort-header {
+    cursor: pointer;
+}
+
+.sort-item {
+    cursor: pointer;
+}
+
+.filter-heading {
+    cursor: pointer;
+}
+
+.filter-control-container {
+    position: absolute;
+    top: 115px;
+    right: 30px;
+    text-align: left;
+    /*float: right;*/
+/*    margin: 30px 30px;*/
+    width: 10%;
+}
+
+.filter-control-container-heading {
+    font-weight: 600;
+}
+
+.filter-control-container-item {
+    font-weight: 200;
+    cursor: pointer;
 }
 
 .SeachBar-Sort {
     display: flex;
-    margin: auto;
+    margin-right: 30px;
 }
 
 .SeachBar {
-    width: 800px
+    padding: 30px;
+    width: 90%;
+    min-width: 650px;
 }
 
 .SeachBar input {
-    width: 500px;
+    width: 65%;
     height: 30px;
-}
-
-.SeachBar button {
-    width: 100px;
-    height: 30px;
-    background-color: #c7e283;
-    border-radius: 5px;
-    font-size: 16px;
-    color: white;
-
+    margin-right: 5px;
 }
 
 .dropdown {
@@ -173,12 +214,19 @@
     background-color: #e3e9ee;
     border: 1px solid #ddd;
     border-radius: 5px;
-    width: 600px;
+    width: 80%;
+    margin: 0 15px 15px 30px;
+    cursor: pointer;
+}
+
+.post-image {
+    width: 150px;
 }
 
 .infoBoxEntrySale {
     list-style: none;
     display: flex;
+    padding-bottom: 15px;
 }
 
 .infoBoxEntrySale > div {
@@ -228,6 +276,10 @@
 .selected {
     background-color: #fafafa;
     border-bottom: 5px solid #8fcee5;
+}
+
+.selected-text {
+    color: #8fcee5;
 }
 
 .form-style-7{
@@ -333,6 +385,8 @@
     padding: 10px 20px 10px 20px;
     border-radius: 3px;
     color: #D2E2FF;
+    -webkit-transition: background 0.5s;
+    transition: 0.5s;
 }
 .form-style-7 input[type="submit"]:hover,
 .form-style-7 input[type="button"]:hover{
@@ -425,9 +479,23 @@
 }
 
 .EntrySale-Title {
-    background-color: #c5c9ce;
+    padding: 5px 0 5px 30px;
+    background: linear-gradient(to right, #c5c9ce, #e3e9ee);
 }
 
+.entry-sale-item {
+    width: 33%;
+    display: inline-flex;
+}
+
+.entry-sale-field-title {
+    font-weight: 600;
+    margin-left: 15px;
+}
+
+.entry-sale-field-value {
+    margin-left: 10px;
+}
 
 .cancelbtn {
     width: auto;
@@ -447,8 +515,8 @@ img.avatar {
 }
 
 .container {
-    padding: 10px;
-
+    padding: 15px;
+    margin: 15px;
 }
 
 span.psw {
@@ -495,4 +563,60 @@ span.psw {
     background-color: #e8e8e8;
 }
 
+.page-per-numbers {
+    background-color: #e3e9ee;
+    line-height: 30px;
+    height: 30px;
+    border-radius: 15px;
+    -webkit-transition: color background-color 0.5s;
+    transition: 0.5s;
+}
 
+.page-per-numbers:hover {
+    background-color: rgba(18, 18, 18, .1);
+    color: #fff;
+}
+
+.search-btn {
+    cursor: pointer;
+    width: 15%;
+    height: 35px;
+    background-color: #c7e283;
+    border-radius: 2.5px;
+    font-size: 16px;
+    color: white;
+    -webkit-transition: background-color 0.5s;
+    transition: 0.5s;
+}
+
+.search-btn:hover {
+    background-color: #a7c263;
+}
+
+.basic-btn {
+    height: 35px;
+    width: 10%;
+    cursor: pointer;
+    border-radius: 2.5px;
+    font-size: 16px;
+    color: white;
+    background-color: rgba(18, 18, 18, .2);
+    -webkit-transition: background-color 0.5s;
+    transition: 0.5s;
+}
+
+.basic-btn:hover {
+    background-color: rgba(18, 18, 18, .3);
+}
+
+.post-page-title {
+    text-align: center;
+    text-shadow: .75px .5px rgba(200, 200, 200, .8);
+}
+
+.margin-left-30 {
+    top: 150px;
+    left: 30px;
+    width: 73%;
+    display: block;
+}

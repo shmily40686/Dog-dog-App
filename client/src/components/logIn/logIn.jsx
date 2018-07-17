@@ -134,20 +134,13 @@ class logIn extends React.Component {
 			return (
 			<div className="signup">
 					<form  onSubmit={this.submitSignUp}>
-					  <div className="imgcontainer">
-					    <img src="img_avatar2.png" alt="Avatar" className="avatar"/>
-					  </div>
-
 					  <div className="container">
 					    <label htmlFor="uname"><b>Username</b></label>
 					    <input className="login" type="text" placeholder="Enter Username" name="uname" onChange={this.getUsername}/>
-
 					    <label htmlFor="psw"><b>Password</b></label>
 					    <input className="login" type="password" placeholder="Enter Password" name="psw"  onChange={this.getPassword}/>
-
 					    <label htmlFor="psw"><b>Repeat Password</b></label>
 					    <input className="login" type="password" placeholder="Repeat Password " name="psw"  onChange={this.getRepeatPassword}/>
-
 					    <button className="loginButton"type="submit">Sign Up</button>
 					  </div>
 					</form>
@@ -157,14 +150,9 @@ class logIn extends React.Component {
 			return (
 				<div className="logIn">
 					<form onSubmit={this.submitLogIn}>
-					  <div className="imgcontainer">
-					    <img src="img_avatar2.png" alt="Avatar" className="avatar"/>
-					  </div>
-
 					  <div className="container">
 					    <label htmlFor="uname"><b>Username</b></label>
 					    <input className="login" type="text" placeholder="Enter Username" name="uname" onChange={this.getUsername}/>
-
 					    <label htmlFor="psw"><b>Password</b></label>
 					    <input className="login" type="password" placeholder="Enter Password" name="psw"  onChange={this.getPassword}/>
 					    <div className='centered-container'>

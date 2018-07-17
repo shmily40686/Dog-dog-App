@@ -87,8 +87,8 @@ class SeachBar extends React.Component {
 		console.log(this.props)
 		return(
 			<div className='SeachBar'>
-				<input type="text" onChange={this.seachHandler}/>
-				<button onClick={this.keyWordsFilter}>Seach</button>
+				<input className="search-input" type="text" onChange={this.seachHandler}/>
+				<button className="search-btn" onClick={this.keyWordsFilter}>Search</button>
 			</div>
 		)
 	}
