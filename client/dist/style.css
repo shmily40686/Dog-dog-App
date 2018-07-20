@@ -210,29 +210,47 @@
     height: :20px;
 }
 
+.link-post {
+    text-decoration: none;
+    color: black;
+}
+
 .post {
-    background-color: #e3e9ee;
+    
     border: 1px solid #ddd;
     border-radius: 5px;
     width: 80%;
     margin: 0 15px 15px 30px;
     cursor: pointer;
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/5/51/Paw-print.svg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.post:hover {
+   border: 1px solid #ff5447;
+   outline: none;
+   box-shadow: 0 0 20px #ff5447; 
 }
 
 .post-image {
     width: 150px;
+    padding: 30px;
+    border-radius: 20%;
+    float: right;
 }
+
 
 .infoBoxEntrySale {
     list-style: none;
-    display: flex;
+/*    display: flex;*/
     padding-bottom: 15px;
 }
 
 .infoBoxEntrySale > div {
   margin-right: 2em;
 }
-
 
 .dropbtn:hover, .dropbtn:focus {
     background-color: #3e8e41;
@@ -520,12 +538,19 @@
 
 .EntrySale-Title {
     padding: 5px 0 5px 30px;
-    background: linear-gradient(to right, #c5c9ce, #e3e9ee);
+    background: url(http://apod.nasa.gov/apod/image/0603/coma_misti.jpg) -80px -80px;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    font-weight: bold;
+    font-size: 25px;
+}
+.EntrySale-Title-Box {
+        background: linear-gradient(to right, #c5c9ce, #e3e9ee);
 }
 
 .entry-sale-item {
     width: 33%;
-    display: inline-flex;
+/*    display: inline-flex;*/
 }
 
 .entry-sale-field-title {
@@ -535,6 +560,7 @@
 
 .entry-sale-field-value {
     margin-left: 10px;
+    font-size: 12px;
 }
 
 .cancelbtn {
@@ -695,7 +721,8 @@ span.psw {
 
 .post-page-box:hover {
    color: red;
-   border: 3px solid ;
+   box-shadow: 0 0 20px #ff5447; 
+   border: 2px solid ;
    background-image: url(https://upload.wikimedia.org/wikipedia/commons/5/51/Paw-print.svg) ; 
    background-repeat: no-repeat;
    background-size: 300px 200px;
@@ -725,7 +752,8 @@ span.psw {
 
 .info-box:hover {
    color: red;
-   border: 3px solid ;
+   box-shadow: 0 0 20px #ff5447; 
+   border: 2px solid ;
    background-image: url(https://upload.wikimedia.org/wikipedia/commons/5/51/Paw-print.svg) ; 
    background-repeat: no-repeat;
    background-size: 300px 200px;
@@ -746,8 +774,10 @@ span.psw {
 }
 
 .price-box:hover {
+   
    color: red;
-   border: 3px solid ;
+   box-shadow: 0 0 20px #ff5447; 
+   border: 2px solid ;
    background-image: url(https://upload.wikimedia.org/wikipedia/commons/5/51/Paw-print.svg) ; 
    background-repeat: no-repeat;
    background-size: 300px 200px;
@@ -772,7 +802,8 @@ span.psw {
 }
 .connect-box:hover {
    color: red;
-   border: 3px solid ;
+   box-shadow: 0 0 20px #ff5447; 
+   border: 2px solid ;
    background-image: url(https://upload.wikimedia.org/wikipedia/commons/5/51/Paw-print.svg) ; 
    background-repeat: no-repeat;
    background-size: 300px 200px;
@@ -792,7 +823,8 @@ span.psw {
 }
 .location-box:hover {
    color: red;
-   border: 3px solid ;
+   box-shadow: 0 0 20px #ff5447; 
+   border: 2px solid ;
    background-image: url(https://upload.wikimedia.org/wikipedia/commons/5/51/Paw-print.svg) ; 
    background-repeat: no-repeat;
    background-size: 300px 200px;

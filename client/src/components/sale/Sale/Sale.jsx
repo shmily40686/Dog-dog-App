@@ -121,11 +121,6 @@ class Sale extends React.Component {
 		})
 	}
 
-	// changeView () {
-	// 	this.setState({
-	// 		view:!this.state.view
-	// 	})
-	// }
 
 	changeComments (data) {
 	  var newPost = Object.assign({}, this.state.currentPost)
@@ -150,11 +145,6 @@ class Sale extends React.Component {
 					})}
 				</div>
 			)
-		// } else {
-		// 	return (
-		// 			<ClickSale currentPost={this.state.currentPost}  changeComments={this.changeComments} changeView={this.changeView}/>
-		// 	)
-		// }
 	}
 
 	render() {
