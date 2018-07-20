@@ -107,16 +107,18 @@
 .nav{
     display: flex;
     margin: auto;
-    background-color: #e9eaec;
+    background-image: url(https://media.istockphoto.com/photos/metal-texture-picture-id501701528?k=6&m=501701528&s=612x612&w=0&h=a62Z-l-S7S8yW_sYcN8OpZCxNjjJmPCQYkQ24bjf44A=);
+    background-repeat: no-repeat;
+    background-size: 100%;
     height: 40px;
     overflow: hidden;
     text-transform: uppercase;
 }
 
 .title{
+    font-family: arial, helvetica;
 	width: 20%;
     text-align: center;
-    background-color: #c5c9ce;
     font-size: 30px;
     text-decoration: none;
     color: rgba(18, 18, 18, .8);
@@ -125,7 +127,7 @@
 }
 
 .title:hover {
-    border-bottom: 5px solid #8fcee5;
+    border-bottom: 5px solid #ffc447a1;
 }
 
 .selected-option {
@@ -217,7 +219,7 @@
 
 .post {
     
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
     border-radius: 5px;
     width: 80%;
     margin: 0 15px 15px 30px;
@@ -229,9 +231,9 @@
 }
 
 .post:hover {
-   border: 1px solid #ff5447;
+   border: 1px solid #ffc447a1;
    outline: none;
-   box-shadow: 0 0 20px #ff5447; 
+   box-shadow: 0 0 20px #ffc447a1; 
 }
 
 .post-image {
@@ -538,19 +540,26 @@
 
 .EntrySale-Title {
     padding: 5px 0 5px 30px;
-    background: url(http://apod.nasa.gov/apod/image/0603/coma_misti.jpg) -80px -80px;
+    background: url(http://metal.graphics/wp-content/uploads/2016/07/metallic-gold.jpg) -80px -80px;
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
     font-weight: bold;
     font-size: 25px;
 }
+
 .EntrySale-Title-Box {
-        background: linear-gradient(to right, #c5c9ce, #e3e9ee);
+        background: linear-gradient(to right, #c5c9ce, #e3e9ee);nav
 }
 
 .entry-sale-item {
     width: 33%;
 /*    display: inline-flex;*/
+}
+.entry-sale-item:hover {
+   background: url(http://metal.graphics/wp-content/uploads/2016/07/metallic-gold.jpg) -80px -80px;
+   -webkit-text-fill-color: transparent;
+   -webkit-background-clip: text;
+   box-shadow: 2px 2px 4px #000000;
 }
 
 .entry-sale-field-title {
