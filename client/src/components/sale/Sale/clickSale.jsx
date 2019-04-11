@@ -6,6 +6,7 @@ import axios from 'axios';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { changeCurrentPost } from '../../../action/changeCurrentPost.js'
+import { addComment } from '../../../action/addComment.js'
 
 
 const mapStateToProps = (state, props) => {
@@ -19,8 +20,11 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch, props) => {
   return {
     changeCurrentPostToStore: function (post) {
-        dispatch(changeCurrentPost(post))
-      }
+      dispatch(changeCurrentPost(post))
+    },
+    changeComments: function (postId, comment) {
+      dispatch(addComment(postId, comment))
+    }
   }
 }
 
@@ -100,9 +104,16 @@ constructor(props) {
     });
   }
 
-  getText (e) {
+  getText () {
+    let words = this.commentArea.value
+    let index = words.indexOf("shit");
+    if(words.indexOf("shit") !== -1 ) {
+      var frontHalf = words.slice(0, index)
+      var endHalf = words.slice(index + 4)
+      words = frontHalf + "****" + endHalf
+    }
   	this.setState({
-  		text: e.target.value
+  		text: words
   	})
   }
 
@@ -112,23 +123,31 @@ constructor(props) {
       this.props.history.push('/login')
     } else {
       if (!!this.state.text.trim()) {
-            axios({
-              method: 'post',
-              url: `http://localhost:3000/api/comment/${app.props.currentPost._id}`,
-              data: {
-                user: app.props.user,
-                creatAt: new Date(),
-                text: app.state.text,
-                reply:[]
-              }
-            })
-            .then(function (response) {
-              app.props.changeComments(response.data)
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
+        this.commentArea.value = '';
+        app.commentArea.style.color = 'black';
+        axios({
+          method: 'post',
+          url: `http://localhost:3000/api/comment/${app.props.currentPost._id}`,
+          data: {
+            user: app.props.user,
+            creatAt: new Date(),
+            text: app.state.text,
+            reply:[]
           }
+        })
+        .then(function (response) {
+          console.log("response",response)
+          app.props.changeComments(app.props.currentPost.id, response.data)
+          app.setState({
+            text: ''
+          })
+        })
+        .catch(function (error) {
+          console.log(error);
+          app.commentArea.value = app.state.text
+          app.commentArea.style.color = 'red';
+        });
+      }
     } 	
   }
 
@@ -158,6 +177,7 @@ constructor(props) {
                   <div className='small-box'>
                     <div className='info-box '>
                       <h3 className='infoTitle'>Info</h3>
+                      <div>Type {this.props.currentPost.info.toy}</div>
                       <div>Type {this.props.currentPost.info.type}</div>
                       <div>Ago {this.props.currentPost.info.age.year} year<span>{this.props.currentPost.info.age.month} month</span></div>
                       <div>Size {this.props.currentPost.info.size}</div>
@@ -200,7 +220,7 @@ constructor(props) {
                         })
                       }
                     </div>
-                    <textarea className='comment-textarea' rows="4" cols="50" onChange={this.getText} /><br/>
+                    <textarea ref={(el) => this.commentArea = el} className='comment-textarea' rows="4" cols="50" onChange={this.getText} /><br/>
                     <button className='basic-btn' onClick={this.addReply} >Add Reply</button>
                   </div>
                 </div>

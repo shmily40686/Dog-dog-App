@@ -63,10 +63,7 @@ class Sale extends React.Component {
 				let newPosts = data.filter(function (post) {
 					return !postIds.has(post._id)
 				}).map(function(post) {
-					post.keyWords = "";
-					post.keyWords += post.info.type;
-					post.keyWords += post.info.color;
-					post.keyWords += post.location.city;
+					post.keyWords = [post.info.type, post.info.color, post.location.city].join(' ');
 					return post;
 				})
 
@@ -132,7 +129,6 @@ class Sale extends React.Component {
 
 
 	showComponent () {
-		// if (this.state.view === true) {
 			const indexOfLastPost = this.state.currentPage * this.state.postsPerPage;
 			const indexOfFirstPost = indexOfLastPost - this.state.postsPerPage;
 			const currentPosts = this.props.posts.slice(indexOfFirstPost, indexOfLastPost)

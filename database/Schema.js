@@ -13,6 +13,7 @@ const User = mongoose.model('User', userSchema);
 
 const DogPostInfoSchema = new mongoose.Schema({
 	type: String,
+	toy: String,
 	age: {
 		year: Number,
 		month: Number

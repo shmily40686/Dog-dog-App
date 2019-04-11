@@ -24,10 +24,12 @@ const mapDispatchToProps = (dispatch, props) => {
 
 class Welcome extends React.Component {
 
-	constructor(props) {
-	  super(props);
+constructor(props) {
+	 super(props);
+
+
 	this.locationHandler = this.locationHandler.bind(this);
-	}
+}
 
   locationHandler(e) {
   	this.props.changeLocationToStore(e.target.value)

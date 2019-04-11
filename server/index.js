@@ -133,7 +133,6 @@ app.post('/api/deletePosts', function(req,res) {
 
 app.get('/api/posts', function (req, res) {
 	dbModels.DogPost.find({}, function (err, data) {
-		// console.log('data: ', data)
 		res.setHeader('Content-Type', 'application/json');
 		res.status(200).send(JSON.stringify(data))
 	})
@@ -163,7 +162,6 @@ app.get('/api/getOnePost/:postId', function(req, res) {
 
 
 app.post('/api/login', function (req, res) {
-	console.log("got the login data", req.body)
 	dbModels.User.findOne({userName: req.body.username}, function (err, data) {
 		if (err) {
 			res.status(404).send(err)

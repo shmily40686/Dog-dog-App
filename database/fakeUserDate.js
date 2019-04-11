@@ -20,6 +20,7 @@ const samplePost = [
    creatAt:'Thu Jun 14 2018 10:52:57 GMT-0700 (PDT)',
    info: {
     type: "Lab",
+    toy:"ball",
     age: {
      year: 0,
      month: 2
